@@ -1,0 +1,22 @@
+{
+  "name": "mastertaofull",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.0-alpha1",
+    "gulp": "^4.0.2",
+    "gulp-cli": "^2.3.0",
+    "json-server": "^0.17.1"
+  },
+  "devDependencies": {
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  },
+  "keywords": [],
+  "description": ""
+}
