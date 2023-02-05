@@ -14,181 +14,186 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 function cards(){
 
+
+    // async function getResource(url) {
+    //     let res = await fetch(url);
+    
+    //     if (!res.ok) {
+    //         throw new Error(`Could not fetch ${url}, status: ${res.status}`);
+    //     }
+    
+    //     return await res.json();
+    // }
+
     // -----------dilivery card------------
 
 
-    // class DiliveryCard {
-    //     constructor(src,alt,title,days,weight,prise,parentSelector,...classes){
-    //         this.src = src;
-    //         this.alt = alt;
-    //         this.title = title;
-    //         this.days = days;
-    //         this.weight = weight;
-    //         this.prise = prise;
-    //         this.parent = document.querySelector(parentSelector);
-    //         this.class = classes;
-    //     }
+    class DiliveryCard {
+        constructor(src,alt,title,days,weight,prise,parentSelector,classes){
+            this.src = src;
+            this.alt = alt;
+            this.title = title;
+            this.days = days;
+            this.weight = weight;
+            this.prise = prise;
+            this.parent = document.querySelector(parentSelector);
+            this.class = classes;
+        }
 
 
-    //     render(){
-    //         const element = document.createElement('div');
+        render(){
+            const element = document.createElement('div');
 
-    //         if( this.class.length === 0){
-    //             element.classList.add("slider-template__item");
-    //         }else{
-    //             this.class.forEach(item => element.classList.add(item));
-    //         }
+            element.classList.add("slider-template__item");
                 
-    //         element.innerHTML = `
-    //             <div class="special-box">
-    //                 <div class="img-box">
-    //                     <img src= ${this.src} alt=${this.alt}>
-    //                 </div>
-    //                 <div class="options">${this.title}</div>
-    //                 <ul class="attr">
-    //                     <li class="attr-day">${this.days}</li>
-    //                     <li class="attr-weight">${this.weight}</li>
-    //                 </ul>
-    //                 <div class="price">
-    //                     <span>от </span> ${this.prise} <span class="text-white">$/кг</span>
-    //                 </div>
-    //                 <div class="button-group">
-    //                     <button data-btn class="btn btn-primary">Оставить заявку</button>
-    //                     <button class="btn btn-secondary">Заявка</button>
-    //                 </div>
-    //             </div>
+            element.innerHTML = `
+                <div class="img-box">
+                    <img src= ${this.src} alt=${this.alt}>
+                </div>
+                <div class="options">${this.title}</div>
+                <ul class="attr">
+                    <li class="attr-day">${this.days}</li>
+                    <li class="attr-weight">${this.weight}</li>
+                </ul>
+                <div class="price">
+                    <span>от </span> ${this.prise} <span class="text-white">$/кг</span>
+                </div>
+                <div class="button-group">
+                    <button data-btn class="btn btn-primary">Оставить заявку</button>
+                    <button class="btn btn-secondary">Заявка</button>
+                </div>
         
-    //         `;
+            `;
+            this.parent.append(element);
+        }
 
-    //         this.parent.append(element);
+    }
+    new DiliveryCard(
+        "src/img/dilivery/slider-dilivery-1.png",
+        "dilivery",
+        'Авто - обычная',
+        '9-15 дней',
+        'от 5 кг',
+        '2,5',
+        '.dilivery .offer__slider-inner'
+    ).render();
 
-    //     }
-    // }
+    new DiliveryCard(
+        "src/img/dilivery/slider-dilivery-2.png",
+        "dilivery",
+        'Авто - ускоренная',
+        '9-12 дней',
+        'от 15 кг',
+        '3,5',
+        '.dilivery .offer__slider-inner'
+    ).render();
 
+    new DiliveryCard(
+        "src/img/dilivery/slider-dilivery-3.png",
+        "dilivery",
+        'Авиа',
+        '7-10 дней',
+        'от 7 кг',
+        '4,5',
+        '.dilivery .offer__slider-inner'
+    ).render();
 
-    // new DiliveryCard(
-    //     "img/slider-dilivery-1.png",
-    //     "dilivery",
-    //     'Авто - обычная',
-    //     '9-15 дней',
-    //     'от 5 кг',
-    //     '2,5',
-    //     '.dilivery .slider-template'
-    // ).render();
+    new DiliveryCard(
+        "src/img/dilivery/slider-dilivery-4.png",
+        "dilivery",
+        'Ж/д',
+        '9-15 дней',
+        'от 5 кг',
+        '3,5',
+        '.dilivery .offer__slider-inner'
+    ).render();
 
-    // new DiliveryCard(
-    //     "img/slider-dilivery-2.png",
-    //     "dilivery",
-    //     'Авто - ускоренная',
-    //     '9-12 дней',
-    //     'от 15 кг',
-    //     '3,5',
-    //     '.dilivery .slider-template'
-    // ).render();
-
-    // new DiliveryCard(
-    //     "img/slider-dilivery-3.png",
-    //     "dilivery",
-    //     'Авиа',
-    //     '7-10 дней',
-    //     'от 7 кг',
-    //     '4,5',
-    //     '.dilivery .slider-template'
-    // ).render();
-
-    // new DiliveryCard(
-    //     "img/slider-dilivery-4.png",
-    //     "dilivery",
-    //     'Ж/д',
-    //     '9-15 дней',
-    //     'от 5 кг',
-    //     '3,5',
-    //     '.dilivery .slider-template'
-    // ).render();
-
-    // new DiliveryCard(
-    //     "img/slider-dilivery-5.png",
-    //     "dilivery",
-    //     'Море',
-    //     '9-15 дней',
-    //     'от 5 кг',
-    //     '2,5',
-    //     '.dilivery .slider-template'
-    // ).render();
+    new DiliveryCard(
+        "src/img/dilivery/slider-dilivery-5.png",
+        "dilivery",
+        'Море',
+        '9-15 дней',
+        'от 5 кг',
+        '2,5',
+        '.dilivery .offer__slider-inner'
+    ).render();
 
 
+    // getResource('http://localhost:3000/dilivery')
+    // .then(data => {
+    //     data.forEach(({img, altimg, title, days, weight,prise}) => {
+    //         new DiliveryCard(img, altimg, title, days, weight,prise, ".dilivery .offer__slider-inner").render();
+    //     });
+    // });
+
+    
 
 
     // services card
 
-
-    // class ServicesCard {
-    //     constructor(src,title,text,parentSelector,...classes){
-    //         this.src = src;
-    //         this.title = title;
-    //         this.text = text;
-    //         this.parent = document.querySelector(parentSelector);
-    //         this.class = classes;
-    //     }
-
-
-    //     render(){
-    //         const element = document.createElement('div');
-
-    //         if(this.class.length === 0){
-    //             element.classList.add('slider-template__item');
-    //         }else{
-    //             this.class.forEach(item => element.classList.add(item));
-    //         }
-
-    //         element.innerHTML = `
-    //             <div class="special-box" style="${this.src};">
-    //                 <div class="title">${this.title}</div>
-    //                 <div class="description">
-    //                     ${this.text}
-    //                 </div>
-    //                 <div class="button-group">
-    //                     <button class="btn btn-secondary">Подробнее</button>
-    //                 </div>
-    //             </div>
-    //         `;
-
-    //         this.parent.append(element);
-    //     }
-    // }
+    class ServicesCard {
+        constructor(src,title,text,parentSelector,...classes){
+            this.src = src;
+            this.title = title;
+            this.text = text;
+            this.parent = document.querySelector(parentSelector);
+            this.class = classes;
+        }
 
 
-    // new ServicesCard(
-    //     "background-image: url(img/slider-services-1.png)",
-    //     'Выкуп товара',
-    //     'Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину - сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина.',
-    //     '.services .slider-template'
-    //     // 'slider-template__item'
-    // ).render();
+        render(){
+            const element = document.createElement('div');
 
-    // new ServicesCard(
-    //     "background-image: url(img/slider-services-2.png)",
-    //     'Страховка груза',
-    //     'Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину - сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина.',
-    //     '.services .slider-template'
-    //     // 'slider-template__item'
-    // ).render();
+            if(this.class.length === 0){
+                element.classList.add('slider-template__item');
+            }else{
+                this.class.forEach(item => element.classList.add(item));
+            }
 
-    // new ServicesCard(
-    //     "background-image: url(img/slider-services-3.png)",
-    //     'Аренда склада',
-    //     'Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину - сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина.',
-    //     '.services .slider-template'
-    //     // 'slider-template__item'
-    // ).render();
+            element.innerHTML = `
+                <div class="slider-template__item-content" style="${this.src};">
+                    <div class="title">${this.title}</div>
+                    <div class="description">
+                        ${this.text}
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn-secondary">Подробнее</button>
+                    </div>
+                </div>
+            `;
 
-    // new ServicesCard(
-    //     "background-image: url(img/slider-services-4.png)",
-    //     'Перевод денежных средств',
-    //     'Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину - сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина.',
-    //     '.services .slider-template'
-    //     // 'slider-template__item'
-    // ).render();
+            this.parent.append(element);
+        }
+    }
+
+
+    new ServicesCard(
+        "background-image: url(/src/img/services/slider-services-1.png)",
+        'Выкуп товара',
+        'Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину - сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина.',
+        '.services .offer__slider-inner'
+    ).render();
+
+    new ServicesCard(
+        "background-image: url(/src/img/services/slider-services-2.png)",
+        'Страховка груза',
+        'Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину - сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина.',
+        '.services .offer__slider-inner'
+    ).render();
+
+    new ServicesCard(
+        "background-image: url(/src/img/services/slider-services-3.png)",
+        'Аренда склада',
+        'Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину - сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина.',
+        '.services .offer__slider-inner'
+    ).render();
+
+    new ServicesCard(
+        "background-image: url(/src/img/services/slider-services-4.png)",
+        'Перевод денежных средств',
+        'Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину - сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина.',
+        '.services .offer__slider-inner'
+    ).render();
 
 }
 
@@ -454,18 +459,14 @@ function sliders(){
 
 
     slidesFiledDilivery.style.width = 100 * slidesDilivery.length + '%';
-    // sliderDilivery.style.position = 'relative';
     slidesFiledDilivery.style.display = 'flex';
     slidesFiledDilivery.style.transition = '0.5s all';
     sliderWrapperDilivery.style.overflow = 'hidden';
 
 
-
-    // slidesDilivery.forEach(item => {
-    //     item.style.width = widthDilivery;
-    // });
-
-
+    slidesDilivery.forEach(item => {
+        item.style.width = widthDilivery;
+    });
 
 
     function addSlideDilivery(src,title,day,weight,price){
@@ -494,9 +495,8 @@ function sliders(){
     }
     addSlideDilivery("src/img/dilivery/slider-dilivery-1.png",'Авто - обычная','9-15 дней', 'от 5 кг', '2,5');
     addSlideDilivery("src/img/dilivery/slider-dilivery-2.png",'Авто - ускоренная','9-12 дней', 'от 15 кг', '3,5');
-    
+     
         
-
 
     function listenerNextDilivery(){
         if (offsetDilivery == (+widthDilivery.slice(0, widthDilivery.length - 2)/3  * (slidesDilivery.length - 1))) { //650    px
@@ -886,9 +886,9 @@ var __webpack_exports__ = {};
   !*** ./src/js/script.js ***!
   \**************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _modules_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/modal */ "./src/js/modules/modal.js");
-/* harmony import */ var _modules_sliders__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/sliders */ "./src/js/modules/sliders.js");
-/* harmony import */ var _modules_cards__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/cards */ "./src/js/modules/cards.js");
+/* harmony import */ var _modules_cards__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/cards */ "./src/js/modules/cards.js");
+/* harmony import */ var _modules_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/modal */ "./src/js/modules/modal.js");
+/* harmony import */ var _modules_sliders__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/sliders */ "./src/js/modules/sliders.js");
 
 
 
@@ -896,10 +896,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 document.addEventListener('DOMContentLoaded', () =>{
-
-    (0,_modules_modal__WEBPACK_IMPORTED_MODULE_0__["default"])();
-    (0,_modules_sliders__WEBPACK_IMPORTED_MODULE_1__["default"])();
-    (0,_modules_cards__WEBPACK_IMPORTED_MODULE_2__["default"])();
+    (0,_modules_cards__WEBPACK_IMPORTED_MODULE_0__["default"])();
+    (0,_modules_modal__WEBPACK_IMPORTED_MODULE_1__["default"])();
+    (0,_modules_sliders__WEBPACK_IMPORTED_MODULE_2__["default"])(); 
+    // setTimeout(() => {
+       
+    //   },1000);
+    
 });
 })();
 

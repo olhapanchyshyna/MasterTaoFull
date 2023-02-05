@@ -15,7 +15,7 @@
 }
  .offer__slider-inner{
     display: flex;
-    flex-direction: row;
+    flex-direction: row !important;
 }
 
  .slider-template{
@@ -29,8 +29,8 @@
 .dilivery .slider-template__item{
     position: relative;
     padding: 0 20px 27px;
-    max-width: 360px;
-    width: 100%;
+    max-width: 360px !important;
+    /* width: 100%; */
     margin: 0 10px;
     box-shadow: 5px 15px 40px rgba(31, 69, 88, 0.15);
     background-color: #363A4D;

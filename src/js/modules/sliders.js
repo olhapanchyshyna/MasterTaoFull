@@ -187,18 +187,14 @@ function sliders(){
 
 
     slidesFiledDilivery.style.width = 100 * slidesDilivery.length + '%';
-    // sliderDilivery.style.position = 'relative';
     slidesFiledDilivery.style.display = 'flex';
     slidesFiledDilivery.style.transition = '0.5s all';
     sliderWrapperDilivery.style.overflow = 'hidden';
 
 
-
-    // slidesDilivery.forEach(item => {
-    //     item.style.width = widthDilivery;
-    // });
-
-
+    slidesDilivery.forEach(item => {
+        item.style.width = widthDilivery;
+    });
 
 
     function addSlideDilivery(src,title,day,weight,price){
@@ -227,9 +223,8 @@ function sliders(){
     }
     addSlideDilivery("src/img/dilivery/slider-dilivery-1.png",'Авто - обычная','9-15 дней', 'от 5 кг', '2,5');
     addSlideDilivery("src/img/dilivery/slider-dilivery-2.png",'Авто - ускоренная','9-12 дней', 'от 15 кг', '3,5');
-    
+     
         
-
 
     function listenerNextDilivery(){
         if (offsetDilivery == (+widthDilivery.slice(0, widthDilivery.length - 2)/3  * (slidesDilivery.length - 1))) { //650    px
