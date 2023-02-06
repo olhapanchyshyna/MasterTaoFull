@@ -15,15 +15,15 @@ __webpack_require__.r(__webpack_exports__);
 function cards(){
 
 
-    // async function getResource(url) {
-    //     let res = await fetch(url);
+    async function getResource(url) {
+        let res = await fetch(url);
     
-    //     if (!res.ok) {
-    //         throw new Error(`Could not fetch ${url}, status: ${res.status}`);
-    //     }
+        if (!res.ok) {
+            throw new Error(`Could not fetch ${url}, status: ${res.status}`);
+        }
     
-    //     return await res.json();
-    // }
+        return await res.json();
+    }
 
     // -----------dilivery card------------
 
@@ -68,63 +68,12 @@ function cards(){
         }
 
     }
-    new DiliveryCard(
-        "src/img/dilivery/slider-dilivery-1.png",
-        "dilivery",
-        'Авто - обычная',
-        '9-15 дней',
-        'от 5 кг',
-        '2,5',
-        '.dilivery .offer__slider-inner'
-    ).render();
-
-    new DiliveryCard(
-        "src/img/dilivery/slider-dilivery-2.png",
-        "dilivery",
-        'Авто - ускоренная',
-        '9-12 дней',
-        'от 15 кг',
-        '3,5',
-        '.dilivery .offer__slider-inner'
-    ).render();
-
-    new DiliveryCard(
-        "src/img/dilivery/slider-dilivery-3.png",
-        "dilivery",
-        'Авиа',
-        '7-10 дней',
-        'от 7 кг',
-        '4,5',
-        '.dilivery .offer__slider-inner'
-    ).render();
-
-    new DiliveryCard(
-        "src/img/dilivery/slider-dilivery-4.png",
-        "dilivery",
-        'Ж/д',
-        '9-15 дней',
-        'от 5 кг',
-        '3,5',
-        '.dilivery .offer__slider-inner'
-    ).render();
-
-    new DiliveryCard(
-        "src/img/dilivery/slider-dilivery-5.png",
-        "dilivery",
-        'Море',
-        '9-15 дней',
-        'от 5 кг',
-        '2,5',
-        '.dilivery .offer__slider-inner'
-    ).render();
-
-
-    // getResource('http://localhost:3000/dilivery')
-    // .then(data => {
-    //     data.forEach(({img, altimg, title, days, weight,prise}) => {
-    //         new DiliveryCard(img, altimg, title, days, weight,prise, ".dilivery .offer__slider-inner").render();
-    //     });
-    // });
+    getResource('http://localhost:3000/dilivery')
+    .then(data => {
+        data.forEach(({img, altimg, title, days, weight,prise}) => {
+            new DiliveryCard(img, altimg, title, days, weight,prise, ".dilivery .offer__slider-inner").render();
+        });
+    });
 
     
 
@@ -166,34 +115,13 @@ function cards(){
         }
     }
 
+    getResource('http://localhost:3000/services')
+    .then(data => {
+        data.forEach(({img, altimg, text}) => {
+            new ServicesCard(img, altimg, text, ".services .offer__slider-inner").render();
+        });
+    });
 
-    new ServicesCard(
-        "background-image: url(/src/img/services/slider-services-1.png)",
-        'Выкуп товара',
-        'Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину - сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина.',
-        '.services .offer__slider-inner'
-    ).render();
-
-    new ServicesCard(
-        "background-image: url(/src/img/services/slider-services-2.png)",
-        'Страховка груза',
-        'Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину - сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина.',
-        '.services .offer__slider-inner'
-    ).render();
-
-    new ServicesCard(
-        "background-image: url(/src/img/services/slider-services-3.png)",
-        'Аренда склада',
-        'Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину - сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина.',
-        '.services .offer__slider-inner'
-    ).render();
-
-    new ServicesCard(
-        "background-image: url(/src/img/services/slider-services-4.png)",
-        'Перевод денежных средств',
-        'Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину - сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина.',
-        '.services .offer__slider-inner'
-    ).render();
 
 }
 
@@ -897,12 +825,10 @@ __webpack_require__.r(__webpack_exports__);
 
 document.addEventListener('DOMContentLoaded', () =>{
     (0,_modules_cards__WEBPACK_IMPORTED_MODULE_0__["default"])();
-    (0,_modules_modal__WEBPACK_IMPORTED_MODULE_1__["default"])();
-    (0,_modules_sliders__WEBPACK_IMPORTED_MODULE_2__["default"])(); 
-    // setTimeout(() => {
-       
-    //   },1000);
-    
+    setTimeout(() => {
+        (0,_modules_sliders__WEBPACK_IMPORTED_MODULE_2__["default"])(); 
+        (0,_modules_modal__WEBPACK_IMPORTED_MODULE_1__["default"])();
+    },100); 
 });
 })();
 

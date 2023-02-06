@@ -1,11 +1,11 @@
 {   "dilivery": [
     {
-      "img": "src/img/dilivery/slider-dilivery-1.png",
-      "altimg": "dilivery",
-      "title": "Авто - обычная",
-      "days": "9-15 дней",
-      "weight": "от 5 кг",
-      "prise": "2,5"
+        "img": "src/img/dilivery/slider-dilivery-1.png",
+        "altimg": "dilivery",
+        "title": "Авто - обычная",
+        "days": "9-15 дней",
+        "weight": "от 5 кг",
+        "prise": "2,5"
     },
     {   "img": "src/img/dilivery/slider-dilivery-2.png",
         "altimg": "dilivery",
@@ -37,6 +37,28 @@
         "weight": "от 5 кг",
         "prise": "2,5"
     }
+  ],
+    "services": [
+    {
+        "img": "background-image: url(/src/img/services/slider-services-1.png)",
+        "altimg": "Выкуп товара",
+        "text": "Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину - сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина."
+    },
+    {
+        "img": "background-image: url(/src/img/services/slider-services-2.png)",
+        "altimg": "Страховка груза",
+        "text": "Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину - сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина."
+      },
+      {
+        "img": "background-image: url(/src/img/services/slider-services-3.png)",
+        "altimg": "Аренда склада",
+        "text": "Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину - сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина."
+      },
+      {
+        "img": "background-image: url(/src/img/services/slider-services-4.png)",
+        "altimg": "Перевод денежных средств",
+        "text": "Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину - сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина."
+      }
   ],
     "posts": [
       { "id": 1, "title": "json-server", "author": "typicode" }

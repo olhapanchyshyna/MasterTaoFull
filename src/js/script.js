@@ -6,10 +6,8 @@ import sliders from "./modules/sliders";
 
 document.addEventListener('DOMContentLoaded', () =>{
     cards();
-    modals();
-    sliders(); 
-    // setTimeout(() => {
-       
-    //   },1000);
-    
+    setTimeout(() => {
+        sliders(); 
+        modals();
+    },100); 
 });
