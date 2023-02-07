@@ -1,0 +1,164 @@
+.often-questions{
+    margin-bottom: 100px;
+}
+.often-questions-container{
+    display: flex;
+}
+.accordion{
+    width: 100%;
+    max-width: 716px;
+    margin-right: 34px;
+}
+.accordion-button {
+    height: 64px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 124.5%;
+    color: #fff;
+    background-color: #232632;
+    padding: 21px 19px 21px 34px;
+    border: 1px solid #3A444E;
+    border-radius: 10px;
+}
+.accordion-button:focus{
+    border: 1px solid #3A444E;
+}
+.accordion-item, .accordion-item:first-of-type, .accordion-item:not(:first-of-type), .accordion-item:last-of-type {
+    margin-bottom: 16px;
+    border-radius: 10px;
+}
+.accordion-item, .accordion-item:last-of-type, .accordion-item:not(:last-of-type), .accordion-item:first-of-type {
+    margin-bottom: 16px;
+    border-radius: 10px;
+}
+.accordion-button.collapsed{
+    border-radius: 10px;
+}
+.accordion-item:last-of-type .accordion-button.collapsed {
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.accordion-item:first-of-type .accordion-button {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.accordion-body{
+    max-width: 583px;
+    padding: 0 100px 21px 34px;
+}
+.accordion-button:not(.collapsed) {
+    color: black;
+    border: none;
+}
+.accordion-button::after {
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-left: auto;
+    content: "";
+    background-image: url("data:image/svg+xml,%3Csvg width='27' height='27' viewBox='0 0 27 27' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.421875 13.5C0.421875 6.27539 6.27539 0.421875 13.5 0.421875C20.7246 0.421875 26.5781 6.27539 26.5781 13.5C26.5781 20.7246 20.7246 26.5781 13.5 26.5781C6.27539 26.5781 0.421875 20.7246 0.421875 13.5ZM13.5 24.8906C19.7596 24.8906 24.8906 19.8229 24.8906 13.5C24.8906 7.24043 19.8229 2.10938 13.5 2.10938C7.24043 2.10938 2.10938 7.17715 2.10938 13.5C2.10938 19.7596 7.17715 24.8906 13.5 24.8906ZM14.1592 20.0127L20.2289 13.9482C20.4768 13.7004 20.4768 13.2996 20.2289 13.0518L14.1592 6.9873C13.9113 6.73945 13.5105 6.73945 13.2627 6.9873L12.8988 7.35117C12.651 7.59902 12.651 8.01035 12.9094 8.25293L17.4182 12.6035H7.38281C7.03477 12.6035 6.75 12.8883 6.75 13.2363V13.7637C6.75 14.1117 7.03477 14.3965 7.38281 14.3965H17.4182L12.9041 18.7471C12.651 18.9949 12.6457 19.401 12.8936 19.6488L13.2574 20.0127C13.5105 20.2605 13.9113 20.2605 14.1592 20.0127Z' fill='white'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 1.25rem;
+    transition: transform 0.2s ease-in-out;
+}
+.accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,%3Csvg width='27' height='27' viewBox='0 0 27 27' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13.5 26.5781C6.27539 26.5781 0.421874 20.7246 0.421874 13.5C0.421875 6.27539 6.27539 0.421875 13.5 0.421876C20.7246 0.421876 26.5781 6.27539 26.5781 13.5C26.5781 20.7246 20.7246 26.5781 13.5 26.5781ZM24.8906 13.5C24.8906 7.24043 19.8229 2.10938 13.5 2.10938C7.24043 2.10938 2.10937 7.17715 2.10937 13.5C2.10937 19.7596 7.17715 24.8906 13.5 24.8906C19.7596 24.8906 24.8906 19.8229 24.8906 13.5ZM20.0127 12.8408L13.9482 6.77109C13.7004 6.52324 13.2996 6.52324 13.0518 6.77109L6.9873 12.8408C6.73945 13.0887 6.73945 13.4895 6.9873 13.7373L7.35117 14.1012C7.59902 14.349 8.01035 14.349 8.25293 14.0906L12.6035 9.58184L12.6035 19.6172C12.6035 19.9652 12.8883 20.25 13.2363 20.25L13.7637 20.25C14.1117 20.25 14.3965 19.9652 14.3965 19.6172L14.3965 9.58184L18.7471 14.0959C18.9949 14.349 19.401 14.3543 19.6488 14.1064L20.0127 13.7426C20.2605 13.4895 20.2605 13.0887 20.0127 12.8408Z' fill='%23E58D35'/%3E%3C/svg%3E");
+    transform: rotate(0deg);
+}
+.often-questions-row{
+    display: flex;
+    flex-direction: column;
+    max-width: 390px;
+    width: 100%;
+    min-width: 390px;
+    padding: 38px 40px;
+    margin: auto;
+    box-shadow: 5px 15px 40px rgba(11, 24, 97, 0.32);
+}
+.often-questions-title{
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 126%;
+    margin-bottom: 8px;
+
+    
+}
+.often-questions-subtitle{
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 126%;
+    margin-bottom: 23px;
+    
+}
+.often-questions-row input{
+    margin-bottom: 14px;
+    min-width: 300px;
+    max-width: 310px;
+    text-align: center;
+}
+
+.accordion-button:not(.collapsed){
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+}
+
+input:focus-visible {
+    outline: unset;
+}
+
+.often-questions-row .btn{
+    margin-top: 15px;
+    width: 98%;
+}
+.accordion-item, .accordion-item:first-of-type, .accordion-item:not(:first-of-type), .accordion-item:last-of-type {
+    margin-bottom: 16px;
+    border: 0;
+    border-radius: 10px;
+}
+
+.row > * {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}
+
+@media screen and (max-width: 992px){
+    .accordion-button{
+        font-size: 16px;
+        padding: 12px ;
+    }
+    .accordion-body{
+        padding: 12px 16px;
+        text-align: justify;
+    }
+    .often-questions-container{
+        max-width: 745px;
+    }
+}
+@media screen and (max-width: 770px){
+    .often-questions-container{
+        display: flex;
+        flex-direction: column;
+        max-width: 390px;
+    }
+    .accordion{
+        margin-bottom: 28px;
+    }
+    .often-questions-row{
+        padding: 38px 15px;
+        margin: auto;
+        min-width: 315px;
+        text-align: center;
+    }
+    .often-questions-row input{
+        margin: auto;
+        margin-bottom: 20px;
+
+    }
+    
+
+}

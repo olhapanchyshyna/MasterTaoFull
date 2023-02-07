@@ -221,8 +221,8 @@ function sliders(){
             `;
             parentDilivery.append(cloneFirstSlideDilivery);
     }
-    addSlideDilivery("src/img/dilivery/slider-dilivery-1.png",'Авто - обычная','9-15 дней', 'от 5 кг', '2,5');
-    addSlideDilivery("src/img/dilivery/slider-dilivery-2.png",'Авто - ускоренная','9-12 дней', 'от 15 кг', '3,5');
+    addSlideDilivery("assets/img/dilivery/slider-dilivery-1.png",'Авто - обычная','9-15 дней', 'от 5 кг', '2,5');
+    addSlideDilivery("assets/img/dilivery/slider-dilivery-2.png",'Авто - ускоренная','9-12 дней', 'от 15 кг', '3,5');
      
         
 
@@ -411,8 +411,8 @@ function sliders(){
             `;
             parentServices.append(cloneFirstSlideServices);
     }
-    addSlideServices('Выкуп товара', 'Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину -сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина.',"background-image: url(/src/img/services/slider-services-1.png);");
-    addSlideServices('Страховка груза', 'Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину -сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина.',"background-image: url(/src/img/services/slider-services-2.png);");
+    addSlideServices('Выкуп товара', 'Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину -сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина.',"background-image: url(/assets/img/services/slider-services-1.png);");
+    addSlideServices('Страховка груза', 'Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину -сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина.',"background-image: url(/assets/img/services/slider-services-2.png);");
         
 
 

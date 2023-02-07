@@ -1,0 +1,133 @@
+  
+.section-background{
+    background-color: var(--section-background);
+    max-width: 1820px;
+    max-width: calc(100% - 100px);
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 90px 0 90px 0;
+    margin-bottom: 97px;
+
+}
+.advantages-item{
+    margin: 0 15px 0px;
+    width: 263px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 15px;
+}
+.advantages-item .img-box{
+    width: 113px;
+    height: 113px;
+    border-radius: 50%;
+    position: relative;
+    border: 1px solid #6C7188;
+    margin: 0 auto 32px;
+
+}
+.advantages-item .img-box::before{
+    content: "";
+    background: #89C249;
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-45px, -45px);
+}
+.advantages-item .text-box{
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 124.5%;
+    color: #FFFFFF;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.offer__slider-inner-advantages{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.advantages-item img{
+    z-index: 1;
+    position: relative;
+}
+.advantages-item .img-box{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+ .advantages .slick-dots {
+    font-size: 0px;
+    bottom: 0px;
+    left: 0;
+}
+.carousel-indicators-advantages{
+    display: none;
+}
+
+
+@media screen and (max-width: 1024px){
+    .section-background{
+        max-width: 100%;
+        padding: 49px 0 57px 0;
+        border-radius: 0;
+       
+    }
+}
+
+@media screen and (max-width: 865px){
+    
+    .offer__slider_counter-advantages{
+        display: flex;
+    }
+    .advantages .dot{
+        display: flex;
+        box-sizing: content-box;
+        flex: 0 1 auto;
+        width: 10px;
+        border-radius: 50%;
+        height: 10px;
+        margin-right: 15px;
+        margin-left: 15px;
+        cursor: pointer;
+        background-color: #fff;
+        background-clip: padding-box;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        opacity: .5;
+        transition: opacity .7s ease;
+    }
+
+    .carousel-indicators-advantages{
+        display: flex;
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+        left: 0;
+        z-index: 15;
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+    }
+   
+    .active-current-advantages{
+        opacity: 1;
+    }
+    .advantes-row{
+        max-width: 500px;
+        width: 100%;
+        margin: auto;
+    }
+    .offer__slider-inner-advantages{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
+}

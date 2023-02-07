@@ -1,8 +1,10 @@
 "use strict";
 
+import bootstrap from 'bootstrap';
 import cards from "./modules/cards";
 import modals from "./modules/modal";
 import sliders from "./modules/sliders";
+
 
 document.addEventListener('DOMContentLoaded', () =>{
     cards();
@@ -10,4 +12,5 @@ document.addEventListener('DOMContentLoaded', () =>{
         sliders(); 
         modals();
     },100); 
+    
 });
