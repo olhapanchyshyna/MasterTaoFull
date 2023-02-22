@@ -142,3 +142,8 @@ body{
 .link-anchor{
     text-decoration: none;
 }
+
+.active-current{
+    opacity: 1;
+}
+

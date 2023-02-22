@@ -137,9 +137,6 @@
         opacity: .5;
         transition: opacity .7s ease;
     }
-    .active-current-services{
-        opacity: 1;
-    }
     .carousel-indicators-services{
         display: flex;
         position: absolute;

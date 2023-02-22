@@ -3477,38 +3477,41 @@ __webpack_require__.r(__webpack_exports__);
 function modals() {
   // --------------modal--------------
 
-  var modal = document.querySelector('.form-container'),
-    btn = document.querySelectorAll('[data-btn]'),
-    close = document.querySelector('[data-close]');
-  function openModal() {
-    modal.classList.add('show');
-    modal.classList.remove('hide');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeModal() {
-    modal.classList.add('hide');
-    modal.classList.remove('show');
-    document.body.style.overflow = '';
-  }
-  btn.forEach(function (item) {
-    item.addEventListener('click', function (e) {
-      e.preventDefault();
-      openModal();
+  function showModal(modalSelector, btnSelector, closeBtn) {
+    var modal = document.querySelector(modalSelector),
+      btn = document.querySelectorAll(btnSelector),
+      close = document.querySelector(closeBtn);
+    function openModal() {
+      modal.classList.add('show');
+      modal.classList.remove('hide');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      modal.classList.add('hide');
+      modal.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+    btn.forEach(function (item) {
+      item.addEventListener('click', function (e) {
+        e.preventDefault();
+        openModal();
+      });
     });
-  });
-  close.addEventListener('click', function () {
-    closeModal();
-  });
-  modal.addEventListener('click', function (e) {
-    if (e.target === modal) {
+    close.addEventListener('click', function () {
       closeModal();
-    }
-  });
-  window.addEventListener('keydown', function (e) {
-    if (e.code === 'Escape') {
-      closeModal();
-    }
-  });
+    });
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+    window.addEventListener('keydown', function (e) {
+      if (e.code === 'Escape') {
+        closeModal();
+      }
+    });
+  }
+  showModal('.form-container', '[data-btn]', '[data-close]');
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (modals);
 
@@ -3541,88 +3544,89 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function sliders() {
-  // --------------Slides first-screen--------------
+  function showSlidersBig(slidesItem, sliderSelector, prevSelector, nextSelector, dotsSelector, sliderWrapperSelector, slidesFiledSelector, activeClass) {
+    // --------------Slides first-screen--------------
 
-  var slidesFirstScreen = document.querySelectorAll('.first-screen  .slick-slide'),
-    sliderFirstScreen = document.querySelector('.first-screen'),
-    prevFirstScreen = document.querySelector('.offer__slider-prev-first-screen'),
-    nextFirstScreen = document.querySelector('.offer__slider-next-first-screen'),
-    dotsFirstScreen = document.querySelectorAll('.first-screen .dot'),
-    dotsWrapperFirstScreen = document.querySelector('.carousel-indicators-first-screen'),
-    sliderWrapperFirstScreen = document.querySelector('.slider-template-first-screen'),
-    widthFirstScreen = window.getComputedStyle(sliderWrapperFirstScreen).width,
-    slidesFiledFirstScreen = document.querySelector('.offer__slider-inner-first-screen');
-  var slideIndexFirstScreen = 1,
-    offsetFirstScreen = 0;
-  slidesFiledFirstScreen.style.width = 100 * slidesFirstScreen.length + '%';
-  sliderFirstScreen.style.position = 'relative';
-  slidesFiledFirstScreen.style.display = 'flex';
-  slidesFiledFirstScreen.style.transition = '0.5s all';
-  sliderWrapperFirstScreen.style.overflow = 'hidden';
-  slidesFirstScreen.forEach(function (item) {
-    item.style.width = widthFirstScreen;
-  });
-  dotsFirstScreen.forEach(function (item) {
-    item.classList.remove('active-current-first-screen');
-  });
-  function showDots() {
-    var i = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-    dotsFirstScreen[i].classList.add('active-current-first-screen');
-  }
-  showDots();
-  nextFirstScreen.addEventListener('click', function () {
-    if (offsetFirstScreen == +widthFirstScreen.slice(0, widthFirstScreen.length - 2) * (slidesFirstScreen.length - 1)) {
-      offsetFirstScreen = 0;
-    } else {
-      offsetFirstScreen += +widthFirstScreen.slice(0, widthFirstScreen.length - 2);
-    }
-    slidesFiledFirstScreen.style.transform = "translateX(-".concat(offsetFirstScreen, "px)");
-    if (slideIndexFirstScreen == slidesFirstScreen.length) {
-      slideIndexFirstScreen = 1;
-    } else {
-      slideIndexFirstScreen++;
-    }
-    dotsFirstScreen.forEach(function (dot) {
-      return dot.style.opacity = ".5";
+    var slides = document.querySelectorAll(slidesItem),
+      slider = document.querySelector(sliderSelector),
+      prev = document.querySelector(prevSelector),
+      next = document.querySelector(nextSelector),
+      dots = document.querySelectorAll(dotsSelector),
+      sliderWrapper = document.querySelector(sliderWrapperSelector),
+      width = window.getComputedStyle(sliderWrapper).width,
+      slidesFiled = document.querySelector(slidesFiledSelector);
+    var slideIndex = 1,
+      offset = 0;
+    slidesFiled.style.width = 100 * slides.length + '%';
+    slider.style.position = 'relative';
+    slidesFiled.style.display = 'flex';
+    slidesFiled.style.transition = '0.5s all';
+    sliderWrapper.style.overflow = 'hidden';
+    slides.forEach(function (item) {
+      item.style.width = width;
     });
-    dotsFirstScreen[slideIndexFirstScreen - 1].style.opacity = 1;
-  });
-  prevFirstScreen.addEventListener('click', function () {
-    if (offsetFirstScreen == 0) {
-      offsetFirstScreen = +widthFirstScreen.slice(0, widthFirstScreen.length - 2) * (slidesFirstScreen.length - 1);
-    } else {
-      offsetFirstScreen -= +widthFirstScreen.slice(0, widthFirstScreen.length - 2);
-    }
-    slidesFiledFirstScreen.style.transform = "translateX(-".concat(offsetFirstScreen, "px)");
-    if (slideIndexFirstScreen == 1) {
-      slideIndexFirstScreen = slidesFirstScreen.length;
-    } else {
-      slideIndexFirstScreen--;
-    }
-    dotsFirstScreen.forEach(function (dot) {
-      return dot.style.opacity = ".5";
+    dots.forEach(function (item) {
+      item.classList.remove(activeClass);
     });
-    dotsFirstScreen[slideIndexFirstScreen - 1].style.opacity = 1;
-  });
-  dotsFirstScreen.forEach(function (dot) {
-    dot.addEventListener('click', function (e) {
-      var slideTo = e.target.getAttribute('data-slide-to');
-      slideIndexFirstScreen = slideTo;
-      offsetFirstScreen = +widthFirstScreen.slice(0, widthFirstScreen.length - 2) * (slideTo - 1);
-      slidesFiledFirstScreen.style.transform = "translateX(-".concat(offsetFirstScreen, "px)");
-      dotsFirstScreen.forEach(function (dot) {
+    function showDots() {
+      var i = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+      dots[i].style.opacity = 1;
+    }
+    showDots();
+    next.addEventListener('click', function () {
+      if (offset == +width.slice(0, width.length - 2) * (slides.length - 1)) {
+        offset = 0;
+      } else {
+        offset += +width.slice(0, width.length - 2);
+      }
+      slidesFiled.style.transform = "translateX(-".concat(offset, "px)");
+      if (slideIndex == slides.length) {
+        slideIndex = 1;
+      } else {
+        slideIndex++;
+      }
+      dots.forEach(function (dot) {
         return dot.style.opacity = ".5";
       });
-      dotsFirstScreen[slideIndexFirstScreen - 1].style.opacity = 1;
+      dots[slideIndex - 1].style.opacity = 1;
     });
-  });
+    prev.addEventListener('click', function () {
+      if (offset == 0) {
+        offset = +width.slice(0, width.length - 2) * (slides.length - 1);
+      } else {
+        offset -= +width.slice(0, width.length - 2);
+      }
+      slidesFiled.style.transform = "translateX(-".concat(offset, "px)");
+      if (slideIndex == 1) {
+        slideIndex = slides.length;
+      } else {
+        slideIndex--;
+      }
+      dots.forEach(function (dot) {
+        return dot.style.opacity = ".5";
+      });
+      dots[slideIndex - 1].style.opacity = 1;
+    });
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function (e) {
+        var slideTo = e.target.getAttribute('data-slide-to');
+        slideIndex = slideTo;
+        offset = +width.slice(0, width.length - 2) * (slideTo - 1);
+        slidesFiled.style.transform = "translateX(-".concat(offset, "px)");
+        dots.forEach(function (dot) {
+          return dot.style.opacity = ".5";
+        });
+        dots[slideIndex - 1].style.opacity = 1;
+      });
+    });
+  }
+  showSlidersBig('.first-screen .slick-slide', '.first-screen', '.offer__slider-prev-first-screen', '.offer__slider-next-first-screen', '.first-screen .dot', '.slider-template-first-screen', '.offer__slider-inner-first-screen', 'active-current');
 
   // --------------Slides advantages--------------
 
   var slidesAdvantages = document.querySelectorAll('.advantages-item'),
     sliderAdvantages = document.querySelector('.advantages'),
     dotsAdvantages = document.querySelectorAll('.advantages .dot'),
-    dotsWrapperAdvantages = document.querySelector('.carousel-indicators-advantages'),
     sliderWrapperAdvantages = document.querySelector('.advantes-row'),
     widthAdvantages = window.getComputedStyle(sliderWrapperAdvantages).width,
     slidesFiledAdvantages = document.querySelector('.offer__slider-inner-advantages');
@@ -3655,245 +3659,140 @@ function sliders() {
           return dot.style.opacity = ".5";
         });
         dotsAdvantages[slideIndexAdvantages - 1].style.opacity = 1;
-        // showDotsDilivery(slideIndexDilivery-1);
       });
     });
   }
-
-  // --------------Slides dilivery--------------
-
-  var slidesDilivery = document.querySelectorAll('.dilivery .slider-template__item'),
-    sliderDilivery = document.querySelector('.slider-template'),
-    nextDilivery = document.querySelector('.offer__slider-next'),
-    prevDilivery = document.querySelector('.offer__slider-prev'),
-    dotsDilivery = document.querySelectorAll('.dilivery .dot'),
-    dotsWrapperDilivery = document.querySelector('.carousel-indicators-dilivery'),
-    sliderWrapperDilivery = document.querySelector('.slider-template'),
-    widthDilivery = window.getComputedStyle(sliderWrapperDilivery).width,
-    slidesFiledDilivery = document.querySelector('.offer__slider-inner');
-  var slideIndexDilivery = 1,
-    offsetDilivery = 0;
-  slidesFiledDilivery.style.width = 100 * slidesDilivery.length + '%';
-  slidesFiledDilivery.style.display = 'flex';
-  slidesFiledDilivery.style.transition = '0.5s all';
-  sliderWrapperDilivery.style.overflow = 'hidden';
-  slidesDilivery.forEach(function (item) {
-    item.style.width = widthDilivery;
-  });
-  function addSlideDilivery(src, title, day, weight, price) {
-    var parentDilivery = document.querySelector('.dilivery .offer__slider-inner');
-    var cloneFirstSlideDilivery = document.createElement('div');
-    cloneFirstSlideDilivery.classList.add('slider-template__item');
-    cloneFirstSlideDilivery.innerHTML = "\n                <div class=\"img-box\">\n                    <img src=".concat(src, " alt=\"dilivery\">\n                </div>\n                <div class=\"options\">").concat(title, "</div>\n                <ul class=\"attr\">\n                    <li class=\"attr-day\">").concat(day, "</li>\n                    <li class=\"attr-weight\">").concat(weight, "</li>\n                </ul>\n                <div class=\"price\">\n                    <span>\u043E\u0442</span> ").concat(price, " <span class=\"text-white\">$/\u043A\u0433</span>\n                </div>\n                <div class=\"button-group\">\n                    <button data-btn class=\"btn btn-primary\">\u041E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u044F\u0432\u043A\u0443</button>\n                    <button class=\"btn btn-secondary\">\u0417\u0430\u044F\u0432\u043A\u0430</button>\n                </div>\n            ");
-    parentDilivery.append(cloneFirstSlideDilivery);
-  }
-  addSlideDilivery("assets/img/dilivery/slider-dilivery-1.png", 'Авто - обычная', '9-15 дней', 'от 5 кг', '2,5');
-  addSlideDilivery("assets/img/dilivery/slider-dilivery-2.png", 'Авто - ускоренная', '9-12 дней', 'от 15 кг', '3,5');
-  function listenerNextDilivery() {
-    if (offsetDilivery == +widthDilivery.slice(0, widthDilivery.length - 2) / 3 * (slidesDilivery.length - 1)) {
-      //650    px
-      offsetDilivery = 0;
-    } else {
-      offsetDilivery += +widthDilivery.slice(0, widthDilivery.length - 2) / 3;
-    }
-    slidesFiledDilivery.style.transform = "translateX(-".concat(offsetDilivery, "px)");
-    if (slideIndexDilivery == slidesDilivery.length) {
-      slideIndexDilivery = 1;
-    } else {
-      slideIndexDilivery++;
-    }
-  }
-  nextDilivery.addEventListener('click', listenerNextDilivery);
-  function listenerPrevDilivery() {
-    if (offsetDilivery == 0) {
-      offsetDilivery = +widthDilivery.slice(0, widthDilivery.length - 2) / 3 * (slidesDilivery.length - 1);
-    } else {
-      offsetDilivery -= +widthDilivery.slice(0, widthDilivery.length - 2) / 3;
-    }
-    slidesFiledDilivery.style.transform = "translateX(-".concat(offsetDilivery, "px)");
-    if (slideIndexDilivery == 1) {
-      slideIndexDilivery = slidesDilivery.length;
-    } else {
-      slideIndexDilivery--;
-    }
-  }
-  prevDilivery.addEventListener('click', listenerPrevDilivery);
-  if (document.documentElement.clientWidth <= 1330) {
-    nextDilivery.removeEventListener('click', listenerNextDilivery);
-    prevDilivery.removeEventListener('click', listenerPrevDilivery);
-    nextDilivery.addEventListener('click', listenerNextDilivery2);
-    prevDilivery.addEventListener('click', listenerPrevDilivery2);
-  }
-  function listenerNextDilivery2() {
-    if (offsetDilivery == +widthDilivery.slice(0, widthDilivery.length - 2) / 2 * (slidesDilivery.length - 1)) {
-      //650    px
-      offsetDilivery = 0;
-    } else {
-      offsetDilivery += +widthDilivery.slice(0, widthDilivery.length - 2) / 2;
-    }
-    slidesFiledDilivery.style.transform = "translateX(-".concat(offsetDilivery, "px)");
-    if (slideIndexDilivery == slidesDilivery.length) {
-      slideIndexDilivery = 1;
-    } else {
-      slideIndexDilivery++;
-    }
-  }
-  function listenerPrevDilivery2() {
-    if (offsetDilivery == 0) {
-      offsetDilivery = +widthDilivery.slice(0, widthDilivery.length - 2) / 2 * (slidesDilivery.length - 1);
-    } else {
-      offsetDilivery -= +widthDilivery.slice(0, widthDilivery.length - 2) / 2;
-    }
-    slidesFiledDilivery.style.transform = "translateX(-".concat(offsetDilivery, "px)");
-    if (slideIndexDilivery == 1) {
-      slideIndexDilivery = slidesDilivery.length;
-    } else {
-      slideIndexDilivery--;
-    }
-  }
-  if (document.documentElement.clientWidth <= 865) {
-    var showDotsDilivery = function showDotsDilivery() {
-      var i = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-      dotsDilivery[i].classList.add('active-current-dilivery');
-    };
-    nextDilivery.removeEventListener('click', listenerNextDilivery2);
-    prevDilivery.removeEventListener('click', listenerPrevDilivery2);
-    dotsDilivery.forEach(function (item) {
-      item.classList.remove('active-current-dilivery');
+  function showSlidersSmall(slidesItem, prevSelector, nextSelector, dotsSelector, sliderWrapperSelector, slidesFiledSelector, activeClass) {
+    var addSliderDilivery = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : false;
+    var addSliderServices = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : false;
+    var slides = document.querySelectorAll(slidesItem),
+      prev = document.querySelector(prevSelector),
+      next = document.querySelector(nextSelector),
+      dots = document.querySelectorAll(dotsSelector),
+      sliderWrapper = document.querySelector(sliderWrapperSelector),
+      width = window.getComputedStyle(sliderWrapper).width,
+      slidesFiled = document.querySelector(slidesFiledSelector);
+    var slideIndex = 1,
+      offset = 0;
+    slidesFiled.style.width = 100 * slides.length + '%';
+    slidesFiled.style.display = 'flex';
+    slidesFiled.style.transition = '0.5s all';
+    sliderWrapper.style.overflow = 'hidden';
+    slides.forEach(function (item) {
+      item.style.width = width;
     });
-    showDotsDilivery();
-    dotsDilivery.forEach(function (dot) {
-      dot.addEventListener('click', function (e) {
-        var slideTo = e.target.getAttribute('data-slide-to');
-        slideIndexDilivery = slideTo;
-        offsetDilivery = +widthDilivery.slice(0, widthDilivery.length - 2) * (slideTo - 1);
-        slidesFiledDilivery.style.transform = "translateX(-".concat(offsetDilivery, "px)");
-        dotsDilivery.forEach(function (dot) {
-          return dot.style.opacity = ".5";
+    if (addSliderDilivery) {
+      var addSlideDilivery = function addSlideDilivery(src, title, day, weight, price) {
+        var parent = document.querySelector('.dilivery .offer__slider-inner');
+        var clone = document.createElement('div');
+        clone.classList.add('slider-template__item');
+        clone.innerHTML = "\n                    <div class=\"img-box\">\n                        <img src=".concat(src, " alt=\"dilivery\">\n                    </div>\n                    <div class=\"options\">").concat(title, "</div>\n                    <ul class=\"attr\">\n                        <li class=\"attr-day\">").concat(day, "</li>\n                        <li class=\"attr-weight\">").concat(weight, "</li>\n                    </ul>\n                    <div class=\"price\">\n                        <span>\u043E\u0442</span> ").concat(price, " <span class=\"text-white\">$/\u043A\u0433</span>\n                    </div>\n                    <div class=\"button-group\">\n                        <button data-btn class=\"btn btn-primary\">\u041E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u044F\u0432\u043A\u0443</button>\n                        <button class=\"btn btn-secondary\">\u0417\u0430\u044F\u0432\u043A\u0430</button>\n                    </div>\n                ");
+        parent.append(clone);
+      };
+      addSlideDilivery("assets/img/dilivery/slider-dilivery-1.png", 'Авто - обычная', '9-15 дней', 'от 5 кг', '2,5');
+      addSlideDilivery("assets/img/dilivery/slider-dilivery-2.png", 'Авто - ускоренная', '9-12 дней', 'от 15 кг', '3,5');
+    }
+    if (addSliderServices) {
+      var addSlideServices = function addSlideServices(title, text, style) {
+        var parent = document.querySelector('#services .offer__slider-inner');
+        var clone = document.createElement('div');
+        clone.classList.add('slider-template__item');
+        clone.style = "".concat(style);
+        clone.innerHTML = "\n                    <div class=\"slider-template__item-content\" style=>\n                        <div class=\"title\">".concat(title, "</div>\n                        <div class=\"description\">\n                            ").concat(text, ";\n                        </div>\n                        <div class=\"button-group\">\n                            <button class=\"btn btn-secondary\">\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u0435\u0435</button>\n                        </div>\n                    </div>   \n                ");
+        parent.append(clone);
+      };
+      addSlideServices('Выкуп товара', 'Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину -сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина.', "background-image: url(/assets/img/services/slider-services-1.png);");
+      addSlideServices('Страховка груза', 'Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину -сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина.', "background-image: url(/assets/img/services/slider-services-2.png);");
+    }
+    function listenerNext() {
+      if (offset == +width.slice(0, width.length - 2) / 3 * (slides.length - 1)) {
+        //650    px
+        offset = 0;
+      } else {
+        offset += +width.slice(0, width.length - 2) / 3;
+      }
+      slidesFiled.style.transform = "translateX(-".concat(offset, "px)");
+      if (slideIndex == slides.length) {
+        slideIndex = 1;
+      } else {
+        slideIndex++;
+      }
+    }
+    next.addEventListener('click', listenerNext);
+    function listenerPrev() {
+      if (offset == 0) {
+        offset = +width.slice(0, width.length - 2) / 3 * (slides.length - 1);
+      } else {
+        offset -= +width.slice(0, width.length - 2) / 3;
+      }
+      slidesFiled.style.transform = "translateX(-".concat(offset, "px)");
+      if (slideIndex == 1) {
+        slideIndex = slides.length;
+      } else {
+        slideIndex--;
+      }
+    }
+    prev.addEventListener('click', listenerPrev);
+    if (document.documentElement.clientWidth <= 1330) {
+      next.removeEventListener('click', listenerNext);
+      prev.removeEventListener('click', listenerPrev);
+      next.addEventListener('click', listenerNext2);
+      prev.addEventListener('click', listenerPrev2);
+    }
+    function listenerNext2() {
+      if (offset == +width.slice(0, width.length - 2) / 2 * (slides.length - 1)) {
+        //650    px
+        offset = 0;
+      } else {
+        offset += +width.slice(0, width.length - 2) / 2;
+      }
+      slidesFiled.style.transform = "translateX(-".concat(offset, "px)");
+      if (slideIndex == slides.length) {
+        slideIndex = 1;
+      } else {
+        slideIndex++;
+      }
+    }
+    function listenerPrev2() {
+      if (offset == 0) {
+        offset = +width.slice(0, width.length - 2) / 2 * (slides.length - 1);
+      } else {
+        offset -= +width.slice(0, width.length - 2) / 2;
+      }
+      slidesFiled.style.transform = "translateX(-".concat(offset, "px)");
+      if (slideIndex == 1) {
+        slideIndex = slides.length;
+      } else {
+        slideIndex--;
+      }
+    }
+    if (document.documentElement.clientWidth <= 865) {
+      var showDots = function showDots() {
+        var i = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+        dots[i].style.opacity = 1;
+      };
+      next.removeEventListener('click', listenerNext2);
+      prev.removeEventListener('click', listenerPrev2);
+      dots.forEach(function (item) {
+        item.classList.remove('active-current');
+      });
+      showDots();
+      dots.forEach(function (dot) {
+        dot.addEventListener('click', function (e) {
+          var slideTo = e.target.getAttribute('data-slide-to');
+          slideIndex = slideTo;
+          offset = +width.slice(0, width.length - 2) * (slideTo - 1);
+          slidesFiled.style.transform = "translateX(-".concat(offset, "px)");
+          dots.forEach(function (dot) {
+            return dot.style.opacity = ".5";
+          });
+          dots[slideIndex - 1].style.opacity = 1;
         });
-        dotsDilivery[slideIndexDilivery - 1].style.opacity = 1;
-        // showDotsDilivery(slideIndexDilivery-1);
       });
-    });
-  }
-
-  // --------------Slides services--------------
-
-  var slidesServices = document.querySelectorAll('.services .slider-template__item'),
-    nextServices = document.querySelector('.offer__slider-next-services'),
-    prevServices = document.querySelector('.offer__slider-prev-services'),
-    dotsServices = document.querySelectorAll('.services .dot'),
-    dotsWrapperServices = document.querySelector('.carousel-indicators-services'),
-    currentServices = document.querySelectorAll('.services .current'),
-    sliderWrapperServices = document.querySelector('.services .slider-template'),
-    widthServices = window.getComputedStyle(sliderWrapperServices).width,
-    slidesFiledServices = document.querySelector('.services .offer__slider-inner');
-  var slideIndexServices = 1,
-    offsetServices = 0;
-  slidesFiledServices.style.width = 100 * slidesServices.length + '%';
-  slidesFiledServices.style.display = 'flex';
-  slidesFiledServices.style.transition = '0.5s all';
-  sliderWrapperServices.style.overflow = 'hidden';
-  slidesServices.forEach(function (item) {
-    item.style.width = widthServices;
-  });
-  function addSlideServices(title, text, style) {
-    var parentServices = document.querySelector('#services .offer__slider-inner');
-    var cloneFirstSlideServices = document.createElement('div');
-    cloneFirstSlideServices.classList.add('slider-template__item');
-    cloneFirstSlideServices.style = "".concat(style);
-    cloneFirstSlideServices.innerHTML = "\n                <div class=\"slider-template__item-content\" style=>\n                    <div class=\"title\">".concat(title, "</div>\n                    <div class=\"description\">\n                        ").concat(text, ";\n                    </div>\n                    <div class=\"button-group\">\n                        <button class=\"btn btn-secondary\">\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u0435\u0435</button>\n                    </div>\n                </div>   \n            ");
-    parentServices.append(cloneFirstSlideServices);
-  }
-  addSlideServices('Выкуп товара', 'Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину -сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина.', "background-image: url(/assets/img/services/slider-services-1.png);");
-  addSlideServices('Страховка груза', 'Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину -сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина.', "background-image: url(/assets/img/services/slider-services-2.png);");
-  function listenerNextServices() {
-    if (offsetServices == +widthServices.slice(0, widthServices.length - 2) / 3 * (slidesServices.length - 1)) {
-      //650    px
-      offsetServices = 0;
-    } else {
-      offsetServices += +widthServices.slice(0, widthServices.length - 2) / 3;
-    }
-    slidesFiledServices.style.transform = "translateX(-".concat(offsetServices, "px)");
-    if (slideIndexServices == slidesServices.length) {
-      slideIndexServices = 1;
-    } else {
-      slideIndexServices++;
     }
   }
-  function listenerPrevServices() {
-    if (offsetServices == 0) {
-      offsetServices = +widthServices.slice(0, widthServices.length - 2) / 3 * (slidesServices.length - 1);
-    } else {
-      offsetServices -= +widthServices.slice(0, widthServices.length - 2) / 3;
-    }
-    slidesFiledServices.style.transform = "translateX(-".concat(offsetServices, "px)");
-    if (slideIndexServices == 1) {
-      slideIndexServices = slidesServices.length;
-    } else {
-      slideIndexServices--;
-    }
-  }
-  nextServices.addEventListener('click', listenerNextServices);
-  prevServices.addEventListener('click', listenerPrevServices);
-  if (document.documentElement.clientWidth <= 1330) {
-    nextServices.removeEventListener('click', listenerNextServices);
-    prevServices.removeEventListener('click', listenerPrevServices);
-    nextServices.addEventListener('click', listenerNextServices2);
-    prevServices.addEventListener('click', listenerPrevServices2);
-  }
-  function listenerNextServices2() {
-    if (offsetServices == +widthServices.slice(0, widthServices.length - 2) / 2 * (slidesServices.length - 1)) {
-      //650    px
-      offsetServices = 0;
-    } else {
-      offsetServices += +widthServices.slice(0, widthServices.length - 2) / 2;
-    }
-    slidesFiledServices.style.transform = "translateX(-".concat(offsetServices, "px)");
-    if (slideIndexServices == slidesServices.length) {
-      slideIndexServices = 1;
-    } else {
-      slideIndexServices++;
-    }
-  }
-  function listenerPrevServices2() {
-    if (offsetServices == 0) {
-      offsetServices = +widthServices.slice(0, widthServices.length - 2) / 2 * (slidesServices.length - 1);
-    } else {
-      offsetServices -= +widthServices.slice(0, widthServices.length - 2) / 2;
-    }
-    slidesFiledServices.style.transform = "translateX(-".concat(offsetServices, "px)");
-    if (slideIndexServices == 1) {
-      slideIndexServices = slidesServices.length;
-    } else {
-      slideIndexServices--;
-    }
-  }
-  if (document.documentElement.clientWidth <= 865) {
-    var showDotsServices = function showDotsServices() {
-      var i = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-      dotsServices[i].style.opacity = 1;
-    };
-    nextServices.removeEventListener('click', listenerNextServices2);
-    prevServices.removeEventListener('click', listenerPrevServices2);
-    dotsServices.forEach(function (item) {
-      item.classList.remove('active-current-services');
-    });
-    showDotsServices();
-    dotsServices.forEach(function (dot) {
-      dot.addEventListener('click', function (e) {
-        console.log(dot);
-        var slideTo = e.target.getAttribute('data-slide-to');
-        slideIndexServices = slideTo;
-        offsetServices = +widthServices.slice(0, widthServices.length - 2) * (slideTo - 1);
-        slidesFiledServices.style.transform = "translateX(-".concat(offsetServices, "px)");
-        dotsServices.forEach(function (dot) {
-          return dot.style.opacity = ".5";
-        });
-        dotsServices[slideIndexServices - 1].style.opacity = 1;
-      });
-    });
-  }
+  showSlidersSmall('.dilivery .slider-template__item', '.offer__slider-prev', '.offer__slider-next', '.dilivery .dot', '.slider-template', '.offer__slider-inner', 'active-current', true, false);
+  showSlidersSmall('.services .slider-template__item', '.offer__slider-prev-services', '.offer__slider-next-services', '.services .dot', '.services .slider-template', '.services .offer__slider-inner', 'active-current', false, true);
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (sliders);
 

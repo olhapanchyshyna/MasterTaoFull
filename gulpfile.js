@@ -15,7 +15,6 @@ gulp.task("copy-html", () => {
 });
 
 
-
 gulp.task("copy-assets", () => {
     return gulp.src("./src/assets/**/*.*")
                 .pipe(gulp.dest(dist + "/assets"))
@@ -28,11 +27,11 @@ gulp.task("copy-bootstrap-css", () => {
                 .pipe(browsersync.stream());
 });
 
-gulp.task("copy-bootstrap-js", () => {
-    return gulp.src("./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js")
-                .pipe(gulp.dest(dist))
-                .pipe(browsersync.stream());
-});
+// gulp.task("copy-bootstrap-js", () => {
+//     return gulp.src("./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js")
+//                 .pipe(gulp.dest(dist))
+//                 .pipe(browsersync.stream());
+// });
 
 
 gulp.task("watch", () => {
@@ -79,7 +78,7 @@ gulp.task("build-js", () => {
                 .on("end", browsersync.reload);
 });
 
-gulp.task("build", gulp.parallel("copy-html", "copy-assets", "build-js", "copy-bootstrap-css", "copy-bootstrap-js"));
+gulp.task("build", gulp.parallel("copy-html", "copy-assets", "build-js", "copy-bootstrap-css"));
 
 gulp.task("build-prod-js", () => {
     return gulp.src("./src/js/main.js")

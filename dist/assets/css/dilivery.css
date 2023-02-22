@@ -166,10 +166,6 @@
         opacity: .5;
         transition: opacity .7s ease;
     }
-    .dilivery .active-current-dilivery{
-        opacity: 1;
-    }
-    
     .offer__slider-prev{
         display: none;
     }
