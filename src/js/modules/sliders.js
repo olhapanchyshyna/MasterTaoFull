@@ -101,11 +101,8 @@ function sliders(){
     showSlidersBig('.first-screen .slick-slide','.first-screen','.offer__slider-prev-first-screen', '.offer__slider-next-first-screen','.first-screen .dot', '.slider-template-first-screen','.offer__slider-inner-first-screen','active-current');
     
     
-
     
-        // --------------Slides advantages--------------
-
-    
+    // --------------Slides advantages--------------
     
     const   slidesAdvantages = document.querySelectorAll('.advantages-item'),
             sliderAdvantages = document.querySelector('.advantages'),
