@@ -3329,10 +3329,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
 /* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.array.slice.js */ "./node_modules/core-js/modules/es.array.slice.js");
-/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.array.concat.js */ "./node_modules/core-js/modules/es.array.concat.js");
-/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.array.concat.js */ "./node_modules/core-js/modules/es.array.concat.js");
+/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.array.slice.js */ "./node_modules/core-js/modules/es.array.slice.js");
+/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
@@ -3340,123 +3340,132 @@ __webpack_require__.r(__webpack_exports__);
 
 function sliders() {
   function showSlidersBig(slidesItem, sliderSelector, prevSelector, nextSelector, dotsSelector, sliderWrapperSelector, slidesFiledSelector, activeClass) {
-    // --------------Slides first-screen--------------
-
-    var slides = document.querySelectorAll(slidesItem),
-      slider = document.querySelector(sliderSelector),
-      prev = document.querySelector(prevSelector),
-      next = document.querySelector(nextSelector),
-      dots = document.querySelectorAll(dotsSelector),
-      sliderWrapper = document.querySelector(sliderWrapperSelector),
-      width = window.getComputedStyle(sliderWrapper).width,
-      slidesFiled = document.querySelector(slidesFiledSelector);
-    var slideIndex = 1,
-      offset = 0;
-    slidesFiled.style.width = 100 * slides.length + '%';
-    slider.style.position = 'relative';
-    slidesFiled.style.display = 'flex';
-    slidesFiled.style.transition = '0.5s all';
-    sliderWrapper.style.overflow = 'hidden';
-    slides.forEach(function (item) {
-      item.style.width = width;
-    });
-    dots.forEach(function (item) {
-      item.classList.remove(activeClass);
-    });
-    function showDots() {
-      var i = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-      dots[i].style.opacity = 1;
+    var slides = document.querySelectorAll(slidesItem);
+    var slider = document.querySelector(sliderSelector);
+    var prev = document.querySelector(prevSelector);
+    var next = document.querySelector(nextSelector);
+    var dots = document.querySelectorAll(dotsSelector);
+    var sliderWrapper = document.querySelector(sliderWrapperSelector);
+    var slidesFiled = document.querySelector(slidesFiledSelector);
+    var slideIndex = 0;
+    var offset = 0;
+    function resizeHandler() {
+      var width = sliderWrapper.clientWidth;
+      slides.forEach(function (item) {
+        item.style.width = "".concat(width, "px");
+      });
+      offset = slideIndex * width;
+      moveSlides();
     }
-    showDots();
-    next.addEventListener('click', function () {
-      if (offset == +width.slice(0, width.length - 2) * (slides.length - 1)) {
-        offset = 0;
-      } else {
-        offset += +width.slice(0, width.length - 2);
-      }
+    function moveSlides() {
       slidesFiled.style.transform = "translateX(-".concat(offset, "px)");
-      if (slideIndex == slides.length) {
-        slideIndex = 1;
+    }
+    function nextSlide() {
+      if (slideIndex === slides.length - 1) {
+        slideIndex = 0;
       } else {
         slideIndex++;
       }
-      dots.forEach(function (dot) {
-        return dot.style.opacity = ".5";
-      });
-      dots[slideIndex - 1].style.opacity = 1;
-    });
-    prev.addEventListener('click', function () {
-      if (offset == 0) {
-        offset = +width.slice(0, width.length - 2) * (slides.length - 1);
-      } else {
-        offset -= +width.slice(0, width.length - 2);
-      }
-      slidesFiled.style.transform = "translateX(-".concat(offset, "px)");
-      if (slideIndex == 1) {
-        slideIndex = slides.length;
+      offset = slideIndex * slides[0].clientWidth;
+      moveSlides();
+      showDots();
+    }
+    function prevSlide() {
+      if (slideIndex === 0) {
+        slideIndex = slides.length - 1;
       } else {
         slideIndex--;
       }
+      offset = slideIndex * slides[0].clientWidth;
+      moveSlides();
+      showDots();
+    }
+    function setSlide(slideTo) {
+      slideIndex = slideTo;
+      offset = slideIndex * slides[0].clientWidth;
+      moveSlides();
+      showDots();
+    }
+    function showDots() {
       dots.forEach(function (dot) {
-        return dot.style.opacity = ".5";
+        dot.classList.remove(activeClass);
       });
-      dots[slideIndex - 1].style.opacity = 1;
-    });
-    dots.forEach(function (dot) {
-      dot.addEventListener('click', function (e) {
-        var slideTo = e.target.getAttribute('data-slide-to');
-        slideIndex = slideTo;
-        offset = +width.slice(0, width.length - 2) * (slideTo - 1);
-        slidesFiled.style.transform = "translateX(-".concat(offset, "px)");
-        dots.forEach(function (dot) {
-          return dot.style.opacity = ".5";
-        });
-        dots[slideIndex - 1].style.opacity = 1;
+      dots[slideIndex].classList.add(activeClass);
+    }
+    window.addEventListener('resize', resizeHandler);
+    slidesFiled.style.width = "".concat(100 * slides.length, "%");
+    slider.style.position = 'relative';
+    slidesFiled.style.display = 'flex';
+    slidesFiled.style.transition = '0.9s all';
+    sliderWrapper.style.overflow = 'hidden';
+    next.addEventListener('click', nextSlide);
+    prev.addEventListener('click', prevSlide);
+    dots.forEach(function (dot, index) {
+      dot.addEventListener('click', function () {
+        setSlide(index);
       });
     });
+    resizeHandler();
+    showDots();
   }
   showSlidersBig('.first-screen .slick-slide', '.first-screen', '.offer__slider-prev-first-screen', '.offer__slider-next-first-screen', '.first-screen .dot', '.slider-template-first-screen', '.offer__slider-inner-first-screen', 'active-current');
 
   // --------------Slides advantages--------------
 
-  var slidesAdvantages = document.querySelectorAll('.advantages-item'),
-    sliderAdvantages = document.querySelector('.advantages'),
-    dotsAdvantages = document.querySelectorAll('.advantages .dot'),
-    sliderWrapperAdvantages = document.querySelector('.advantes-row'),
-    widthAdvantages = window.getComputedStyle(sliderWrapperAdvantages).width,
-    slidesFiledAdvantages = document.querySelector('.offer__slider-inner-advantages');
-  var slideIndexAdvantages = 1,
-    offsetAdvantages = 0;
-  if (document.documentElement.clientWidth <= 865) {
-    var showDotsAdvantages = function showDotsAdvantages() {
-      var i = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-      dotsAdvantages[i].style.opacity = 1;
-    };
-    slidesFiledAdvantages.style.width = 100 * slidesAdvantages.length + '%';
-    sliderAdvantages.style.position = 'relative';
-    slidesFiledAdvantages.style.display = 'flex';
-    slidesFiledAdvantages.style.transition = '0.5s all';
-    sliderWrapperAdvantages.style.overflow = 'hidden';
-    slidesAdvantages.forEach(function (item) {
-      item.style.width = widthAdvantages;
-    });
-    dotsAdvantages.forEach(function (item) {
-      item.classList.remove('active-current-advantages');
-    });
-    showDotsAdvantages();
-    dotsAdvantages.forEach(function (dot) {
-      dot.addEventListener('click', function (e) {
-        var slideTo = e.target.getAttribute('data-slide-to');
-        slideIndexAdvantages = slideTo;
-        offsetAdvantages = +widthAdvantages.slice(0, widthAdvantages.length - 2) * (slideTo - 1);
-        slidesFiledAdvantages.style.transform = "translateX(-".concat(offsetAdvantages, "px)");
+  var slidesAdvantages = document.querySelectorAll('.advantages-item');
+  var sliderAdvantages = document.querySelector('.advantages');
+  var dotsAdvantages = document.querySelectorAll('.advantages .dot');
+  var sliderWrapperAdvantages = document.querySelector('.advantes-row');
+  var slidesFiledAdvantages = document.querySelector('.offer__slider-inner-advantages');
+  var widthAdvantages = sliderWrapperAdvantages.clientWidth;
+  var slideIndexAdvantages = 0;
+  var offsetAdvantages = 0;
+  window.addEventListener('resize', function () {
+    showAdvantages();
+  });
+  showAdvantages();
+  function showAdvantages() {
+    if (document.documentElement.clientWidth <= 865) {
+      var showDotsAdvantages = function showDotsAdvantages() {
         dotsAdvantages.forEach(function (dot) {
-          return dot.style.opacity = ".5";
+          dot.classList.remove('active-current-advantages');
         });
-        dotsAdvantages[slideIndexAdvantages - 1].style.opacity = 1;
+        dotsAdvantages[slideIndexAdvantages].classList.add('active-current-advantages');
+      };
+      var moveSlidesAdvantages = function moveSlidesAdvantages() {
+        slidesFiledAdvantages.style.transform = "translateX(-".concat(offsetAdvantages, "px)");
+      };
+      var setSlideAdvantages = function setSlideAdvantages(slideTo) {
+        slideIndexAdvantages = slideTo;
+        offsetAdvantages = slideIndexAdvantages * widthAdvantages;
+        moveSlidesAdvantages();
+        showDotsAdvantages();
+      };
+      slidesFiledAdvantages.style.width = 100 * slidesAdvantages.length + '%';
+      sliderAdvantages.style.position = 'relative';
+      slidesFiledAdvantages.style.display = 'flex';
+      slidesFiledAdvantages.style.transition = '0.9s all';
+      sliderWrapperAdvantages.style.overflow = 'hidden';
+      slidesAdvantages.forEach(function (item) {
+        item.style.width = "".concat(widthAdvantages, "px");
       });
-    });
+      dotsAdvantages.forEach(function (dot, index) {
+        dot.addEventListener('click', function () {
+          setSlideAdvantages(index);
+        });
+      });
+      showDotsAdvantages();
+    }
+    if (document.documentElement.clientWidth >= 866) {
+      slidesAdvantages.forEach(function (item) {
+        item.style.width = "";
+      });
+      slidesFiledAdvantages.style.width = '';
+    }
   }
+
+  // showSlidersSmall
+
   function showSlidersSmall(slidesItem, prevSelector, nextSelector, dotsSelector, sliderWrapperSelector, slidesFiledSelector, activeClass) {
     var addSliderDilivery = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : false;
     var addSliderServices = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : false;
@@ -3471,8 +3480,11 @@ function sliders() {
       offset = 0;
     slidesFiled.style.width = 100 * slides.length + '%';
     slidesFiled.style.display = 'flex';
-    slidesFiled.style.transition = '0.5s all';
+    slidesFiled.style.transition = '0.9s all';
     sliderWrapper.style.overflow = 'hidden';
+    function moveSlides() {
+      slidesFiled.style.transform = "translateX(-".concat(offset, "px)");
+    }
     slides.forEach(function (item) {
       item.style.width = width;
     });
@@ -3496,8 +3508,8 @@ function sliders() {
         clone.innerHTML = "\n                    <div class=\"slider-template__item-content\" style=>\n                        <div class=\"title\">".concat(title, "</div>\n                        <div class=\"description\">\n                            ").concat(text, ";\n                        </div>\n                        <div class=\"button-group\">\n                            <button class=\"btn btn-secondary\">\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u0435\u0435</button>\n                        </div>\n                    </div>   \n                ");
         parent.append(clone);
       };
-      addSlideServices('Выкуп товара', 'Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину -сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина.', "background-image: url(/assets/img/services/slider-services-1.png);");
-      addSlideServices('Страховка груза', 'Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину -сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина.', "background-image: url(/assets/img/services/slider-services-2.png);");
+      addSlideServices('Выкуп товара', 'Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину -сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина.', "background-image: url(assets/img/services/slider-services-1.png);");
+      addSlideServices('Страховка груза', 'Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину -сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина.', "background-image: url(assets/img/services/slider-services-2.png);");
     }
     function listenerNext() {
       if (offset == +width.slice(0, width.length - 2) / 3 * (slides.length - 1)) {
@@ -3506,7 +3518,7 @@ function sliders() {
       } else {
         offset += +width.slice(0, width.length - 2) / 3;
       }
-      slidesFiled.style.transform = "translateX(-".concat(offset, "px)");
+      moveSlides();
       if (slideIndex == slides.length) {
         slideIndex = 1;
       } else {
@@ -3520,7 +3532,7 @@ function sliders() {
       } else {
         offset -= +width.slice(0, width.length - 2) / 3;
       }
-      slidesFiled.style.transform = "translateX(-".concat(offset, "px)");
+      moveSlides();
       if (slideIndex == 1) {
         slideIndex = slides.length;
       } else {
@@ -3528,11 +3540,19 @@ function sliders() {
       }
     }
     prev.addEventListener('click', listenerPrev);
-    if (document.documentElement.clientWidth <= 1330) {
-      next.removeEventListener('click', listenerNext);
-      prev.removeEventListener('click', listenerPrev);
-      next.addEventListener('click', listenerNext2);
-      prev.addEventListener('click', listenerPrev2);
+    window.addEventListener('resize', function () {
+      widthBigger();
+      widthSmaller();
+    });
+    widthBigger();
+    widthSmaller();
+    function widthBigger() {
+      if (document.documentElement.clientWidth <= 1330) {
+        next.removeEventListener('click', listenerNext);
+        prev.removeEventListener('click', listenerPrev);
+        next.addEventListener('click', listenerNext2);
+        prev.addEventListener('click', listenerPrev2);
+      }
     }
     function listenerNext2() {
       if (offset == +width.slice(0, width.length - 2) / 2 * (slides.length - 1)) {
@@ -3541,7 +3561,7 @@ function sliders() {
       } else {
         offset += +width.slice(0, width.length - 2) / 2;
       }
-      slidesFiled.style.transform = "translateX(-".concat(offset, "px)");
+      moveSlides();
       if (slideIndex == slides.length) {
         slideIndex = 1;
       } else {
@@ -3554,36 +3574,38 @@ function sliders() {
       } else {
         offset -= +width.slice(0, width.length - 2) / 2;
       }
-      slidesFiled.style.transform = "translateX(-".concat(offset, "px)");
+      moveSlides();
       if (slideIndex == 1) {
         slideIndex = slides.length;
       } else {
         slideIndex--;
       }
     }
-    if (document.documentElement.clientWidth <= 865) {
-      var showDots = function showDots() {
-        var i = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-        dots[i].style.opacity = 1;
-      };
-      next.removeEventListener('click', listenerNext2);
-      prev.removeEventListener('click', listenerPrev2);
-      dots.forEach(function (item) {
-        item.classList.remove('active-current');
-      });
-      showDots();
-      dots.forEach(function (dot) {
-        dot.addEventListener('click', function (e) {
-          var slideTo = e.target.getAttribute('data-slide-to');
-          slideIndex = slideTo;
-          offset = +width.slice(0, width.length - 2) * (slideTo - 1);
-          slidesFiled.style.transform = "translateX(-".concat(offset, "px)");
-          dots.forEach(function (dot) {
-            return dot.style.opacity = ".5";
-          });
-          dots[slideIndex - 1].style.opacity = 1;
+    function widthSmaller() {
+      if (document.documentElement.clientWidth <= 865) {
+        var showDots = function showDots() {
+          var i = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+          dots[i].style.opacity = 1;
+        };
+        next.removeEventListener('click', listenerNext2);
+        prev.removeEventListener('click', listenerPrev2);
+        dots.forEach(function (item) {
+          item.classList.remove('active-current');
         });
-      });
+        showDots();
+        dots.forEach(function (dot) {
+          dot.addEventListener('click', function (e) {
+            var slideTo = e.target.getAttribute('data-slide-to');
+            slideIndex = slideTo;
+            offset = +width.slice(0, width.length - 2) * (slideTo - 1);
+            moveSlides();
+            dots.forEach(function (dot) {
+              return dot.style.opacity = ".5";
+            });
+            dots[slideIndex - 1].style.opacity = 1;
+          });
+        });
+      }
     }
   }
   showSlidersSmall('.dilivery .slider-template__item', '.offer__slider-prev', '.offer__slider-next', '.dilivery .dot', '.slider-template', '.offer__slider-inner', 'active-current', true, false);

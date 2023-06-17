@@ -3,12 +3,14 @@
 }
 
 .navbar{
+    transition: 0.8s all;
     padding-top: 25px;
     padding-bottom: 40px;
     max-width: 1162px;
     margin: 0 auto;
 }
 .navbar-light .navbar-nav .nav-link{
+
     font-weight: 400;
     font-size: 16px;
     line-height: 146%;
@@ -29,9 +31,9 @@
 .navbar-nav{
     width: 100%;
     display: flex;
-   justify-content: space-between;
-   padding: 0 40px;
-   text-align: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    text-align: center;
 }
 .navbar-toggler:focus {
 
@@ -64,7 +66,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-    
+        transition: 0.8s all;
     }
     .navbar-light .navbar-nav .nav-link{
         font-size: 24px;

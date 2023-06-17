@@ -1,5 +1,5 @@
 {
-  "name": "mastertaofull",
+  "name": "gulp",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -28,5 +28,13 @@
     "webpack-stream": "^7.0.0"
   },
   "keywords": [],
-  "description": ""
+  "description": "Это один из моих первый проектов , в этом проекте мною был написан код JS , HTML&CSS а так же подключена библиотека bootstrap. Проект выполнялся по макету с Figma",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Olya-Panchyshyna/MasterTaoFull.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Olya-Panchyshyna/MasterTaoFull/issues"
+  },
+  "homepage": "https://github.com/Olya-Panchyshyna/MasterTaoFull#readme"
 }
