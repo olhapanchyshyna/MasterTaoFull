@@ -27,13 +27,6 @@ gulp.task("copy-bootstrap-css", () => {
                 .pipe(browsersync.stream());
 });
 
-// gulp.task("copy-bootstrap-js", () => {
-//     return gulp.src("./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js")
-//                 .pipe(gulp.dest(dist))
-//                 .pipe(browsersync.stream());
-// });
-
-
 gulp.task("watch", () => {
     browsersync.init({
 		server: "./dist",
