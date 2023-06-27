@@ -47,7 +47,7 @@ body{
 .btn-primary:hover, 
 .btn-primary:active:focus{
     box-shadow: none;
-    background-color: #E58D35; 
+    background-color: transparent !important; 
     border-color: #E58D35;
 }
 .btn-primary:active,
