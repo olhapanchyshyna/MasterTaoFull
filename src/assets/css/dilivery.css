@@ -1,7 +1,6 @@
 .dilivery .template-title-green{
     margin-top: 97px;
 }
-
 .dilivery{
     position: relative;
     margin-bottom: 100px;
@@ -13,6 +12,7 @@
  .offer__slider-inner{
     display: flex;
     flex-direction: row !important;
+    overflow: overlay;
 }
 
  .slider-template{
@@ -150,7 +150,7 @@
         list-style: none;
         padding: 0;
     }
-    .dilivery .dot{
+    .carousel-indicators-dilivery li{
         box-sizing: content-box;
         flex: 0 1 auto;
         width: 10px;

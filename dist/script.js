@@ -3249,6 +3249,222 @@ function withinMaxClamp(min, value, max) {
 
 /***/ }),
 
+/***/ "./src/js/modules/advantagesSlide.js":
+/*!*******************************************!*\
+  !*** ./src/js/modules/advantagesSlide.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "advantagesSlider": () => (/* binding */ advantagesSlider)
+/* harmony export */ });
+/* harmony import */ var core_js_modules_es_array_for_each_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.for-each.js */ "./node_modules/core-js/modules/es.array.for-each.js");
+/* harmony import */ var core_js_modules_es_array_for_each_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_for_each_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.array.from.js */ "./node_modules/core-js/modules/es.array.from.js");
+/* harmony import */ var core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.string.iterator.js */ "./node_modules/core-js/modules/es.string.iterator.js");
+/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es.array.slice.js */ "./node_modules/core-js/modules/es.array.slice.js");
+/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var core_js_modules_web_timers_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/web.timers.js */ "./node_modules/core-js/modules/web.timers.js");
+/* harmony import */ var core_js_modules_web_timers_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_timers_js__WEBPACK_IMPORTED_MODULE_6__);
+
+
+
+
+
+
+
+var advantagesSlider = function advantagesSlider() {
+  var slides = document.querySelectorAll('.advantages-item'),
+    dots = function dots() {
+      return document.querySelectorAll('.advantages li');
+    };
+  var index = 0;
+  var defaultActive = true;
+
+  // ------------------------------------------------------------------------------
+
+  var checkWidth = function checkWidth() {
+    var windowWidth = window.innerWidth;
+    if (windowWidth < 585.98) {
+      slides.forEach(function (item) {
+        return item.classList.add('hidden');
+      });
+      if (defaultActive) {
+        slides[0].classList.add('active');
+        defaultActive = false;
+      }
+      ;
+    }
+    if (windowWidth > 585.98) {
+      slides.forEach(function (item) {
+        return item.classList.remove('hidden');
+      });
+      slides.forEach(function (item) {
+        return item.classList.remove('active');
+      });
+      slides.forEach(function (slide) {
+        return slide.classList.remove('animate__fadeOutLeft');
+      });
+      slides.forEach(function (slide) {
+        return slide.classList.remove('animate__fadeOutRight');
+      });
+      slides.forEach(function (slide) {
+        return slide.classList.remove('animate__slideInRight');
+      });
+      slides.forEach(function (slide) {
+        return slide.classList.remove('animate__slideInLeft');
+      });
+      defaultActive = true;
+    }
+    ;
+  };
+  checkWidth();
+  window.addEventListener('resize', function () {
+    return checkWidth();
+  });
+
+  // ------------------------------------------------------------------------------
+
+  var createDots = function createDots() {
+    var dotsParent = document.querySelector('.carousel-indicators-advantages');
+    var arraySlides = Array.from(dotsParent.children);
+    if (arraySlides.length === 0) {
+      slides.forEach(function () {
+        var newDot = document.createElement('li');
+        dotsParent.append(newDot);
+      });
+      var dotsParentWrapper = dotsParent.closest('.offer__slider_counter-advantages');
+      var widthDotsParent = getComputedStyle(dotsParent).width.slice(0, -2);
+      dotsParentWrapper.style.left = "calc(50% - ".concat(widthDotsParent / 2, "px)");
+      var _dots = dotsParent.querySelectorAll('li');
+      _dots[0].classList.add('slick-active');
+    }
+    ;
+  };
+  createDots();
+
+  // ------------------------------------------------------------------------------
+
+  var moveSlideDots = function moveSlideDots() {
+    slides.forEach(function (slide) {
+      return slide.classList.remove('animate__slideInRight');
+    });
+    slides.forEach(function (slide) {
+      return slide.classList.remove('animate__slideInLeft');
+    });
+    slides.forEach(function (slide) {
+      return slide.classList.remove('animate__fadeOutLeft');
+    });
+    slides.forEach(function (slide) {
+      return slide.classList.remove('animate__fadeOutRight');
+    });
+    slides.forEach(function (slide) {
+      return slide.classList.remove('active');
+    });
+    slides[index].classList.add('active');
+    dots().forEach(function (dot) {
+      return dot.classList.remove('slick-active');
+    });
+    dots()[index].classList.add('slick-active');
+  };
+  dots().forEach(function (dot, i) {
+    dot.addEventListener('click', function () {
+      index = i;
+      moveSlideDots();
+    });
+  });
+
+  // ------------------------------------------------------------------------------
+
+  var moveSlide = function moveSlide(i) {
+    slides.forEach(function (slide) {
+      return slide.classList.remove('animate__fadeOutLeft');
+    });
+    slides.forEach(function (slide) {
+      return slide.classList.remove('animate__fadeOutRight');
+    });
+    if (i === 1) slides[index].classList.add('animate__fadeOutLeft');
+    if (i === -1) slides[index].classList.add('animate__fadeOutRight');
+    index += i;
+    if (index > slides.length - 1) index = 0;
+    if (index < 0) index = slides.length - 1;
+    setTimeout(function () {
+      slides.forEach(function (slide) {
+        return slide.classList.remove('active');
+      });
+      slides[index].classList.add('active');
+    }, 100);
+    slides.forEach(function (slide) {
+      return slide.classList.remove('animate__slideInRight');
+    });
+    slides.forEach(function (slide) {
+      return slide.classList.remove('animate__slideInLeft');
+    });
+    if (i === 1) slides[index].classList.add('animate__slideInRight');
+    if (i === -1) slides[index].classList.add('animate__slideInLeft');
+    dots().forEach(function (dot) {
+      return dot.classList.remove('slick-active');
+    });
+    dots()[index].classList.add('slick-active');
+  };
+
+  // ------------------------------------------------------------------------------
+
+  var slider = document.querySelector('.advantages > .container');
+  var touchStartX = 0;
+  var touchEndX = 0;
+  var swipeThreshold = 50; // Пороговое значение для определения свайпа
+
+  var handleTouchStart = function handleTouchStart(e) {
+    return touchStartX = e.touches[0].clientX;
+  };
+  var handleTouchMove = function handleTouchMove(e) {
+    return touchEndX = touchEndX = e.touches[0].clientX;
+  };
+  ;
+  var handleTouchEnd = function handleTouchEnd() {
+    var swipeLength = touchEndX - touchStartX;
+    // Свайп вправо - переключить на предыдущий слайд
+    if (swipeLength > swipeThreshold) moveSlide(-1);
+    // Свайп влево - переключить на следующий слайд
+    if (swipeLength < -swipeThreshold) moveSlide(1);
+  };
+  var handleResize = function handleResize() {
+    var screenWidth = window.innerWidth;
+    if (screenWidth > 585.98) {
+      // Удалите обработчики событий
+      slider.removeEventListener('touchstart', handleTouchStart);
+      slider.removeEventListener('touchmove', handleTouchMove);
+      slider.removeEventListener('touchend', handleTouchEnd);
+    } else {
+      slider.addEventListener('touchstart', handleTouchStart);
+      slider.addEventListener('touchmove', handleTouchMove);
+      slider.addEventListener('touchend', handleTouchEnd);
+
+      //Выравнивание индикаторов слайдера при динамическом изменении ширины экрана.
+      var dotsParentWrapper = document.querySelector('.advantages > .container > .slick-dots');
+      var widthDotsParent = getComputedStyle(dotsParentWrapper).width.slice(0, -2);
+      dotsParentWrapper.style.left = "calc(50% - ".concat(widthDotsParent / 2, "px)");
+    }
+  };
+  handleResize();
+  window.addEventListener('resize', handleResize);
+};
+
+//Информация - код навален без оптимизации и лаконичности. Есть много чего оптимизировать.
+
+
+
+/***/ }),
+
 /***/ "./src/js/modules/modal.js":
 /*!*********************************!*\
   !*** ./src/js/modules/modal.js ***!
@@ -3312,6 +3528,394 @@ function modals() {
 
 /***/ }),
 
+/***/ "./src/js/modules/sliderTemplate.js":
+/*!******************************************!*\
+  !*** ./src/js/modules/sliderTemplate.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "sliderTemplate": () => (/* binding */ sliderTemplate)
+/* harmony export */ });
+/* harmony import */ var core_js_modules_es_array_for_each_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.for-each.js */ "./node_modules/core-js/modules/es.array.for-each.js");
+/* harmony import */ var core_js_modules_es_array_for_each_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_for_each_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.array.from.js */ "./node_modules/core-js/modules/es.array.from.js");
+/* harmony import */ var core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.string.iterator.js */ "./node_modules/core-js/modules/es.string.iterator.js");
+/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es.array.slice.js */ "./node_modules/core-js/modules/es.array.slice.js");
+/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var core_js_modules_web_timers_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/web.timers.js */ "./node_modules/core-js/modules/web.timers.js");
+/* harmony import */ var core_js_modules_web_timers_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_timers_js__WEBPACK_IMPORTED_MODULE_6__);
+
+
+
+
+
+
+
+var sliderTemplate = function sliderTemplate(parentS, childrenS, prevS, nextS, dotsParentS) {
+  var slidesParent = document.querySelector(parentS),
+    prev = document.querySelector(prevS),
+    next = document.querySelector(nextS);
+  var iFirstVisibleSlide = 0;
+  var iLastVisibleSlide = 2;
+  var defaultSetAttibuteSlides = true;
+  var defaultMoveSlide = false;
+
+  // ------------------------------------------------------------------------------
+
+  var takeSlides = function takeSlides() {
+    return document.querySelectorAll(childrenS);
+  };
+
+  // ------------------------------------------------------------------------------
+
+  var takeDotsParent = function takeDotsParent() {
+    return document.querySelector(dotsParentS);
+  };
+
+  // ------------------------------------------------------------------------------
+
+  var checkWidth = function checkWidth() {
+    var windowWidth = window.innerWidth;
+    takeSlides().forEach(function (item) {
+      return item.classList.remove('hidden');
+    });
+    takeSlides().forEach(function (item) {
+      return item.classList.remove('active');
+    });
+    takeSlides().forEach(function (slide) {
+      return slide.classList.remove('animate__fadeOutRight');
+    });
+    takeSlides().forEach(function (slide) {
+      return slide.classList.remove('animate__slideInLeft');
+    });
+    takeSlides().forEach(function (slide) {
+      return slide.classList.remove('animate__fadeOutLeft');
+    });
+    takeSlides().forEach(function (slide) {
+      return slide.classList.remove('animate__slideInRight');
+    });
+    if (windowWidth > 1199.98) {
+      takeSlides().forEach(function (item, i) {
+        if (i > 2) {
+          item.classList.add('hidden');
+        }
+        if (i < 3) {
+          item.classList.add('active');
+        }
+      });
+      iLastVisibleSlide = 2;
+    }
+    if (windowWidth > 799.98 && windowWidth < 1199.98) {
+      takeSlides().forEach(function (item, i) {
+        if (i > 1) {
+          item.classList.add('hidden');
+        }
+        if (i < 2) {
+          item.classList.add('active');
+        }
+      });
+      iLastVisibleSlide = 1;
+    }
+    if (windowWidth > 299.98 && windowWidth < 799.98) {
+      takeSlides().forEach(function (item, i) {
+        if (i > 0) {
+          item.classList.add('hidden');
+        }
+        if (i < 1) {
+          item.classList.add('active');
+        }
+      });
+      iLastVisibleSlide = 0;
+    }
+  };
+  checkWidth();
+  window.addEventListener('resize', function () {
+    return checkWidth();
+  });
+
+  // ------------------------------------------------------------------------------
+
+  var setAttibuteSlides = function setAttibuteSlides() {
+    return takeSlides().forEach(function (slide, i) {
+      return slide.setAttribute('data-index-slide', i);
+    });
+  };
+
+  // ------------------------------------------------------------------------------
+
+  var createDots = function createDots() {
+    var dotsParent = takeDotsParent();
+    var arrayDots = Array.from(dotsParent.children);
+    if (arrayDots.length === 0) {
+      takeSlides().forEach(function () {
+        var newDot = document.createElement('li');
+        dotsParent.append(newDot);
+      });
+      var dotsParentWrapper = dotsParent.closest('.offer__slider_counter');
+      var widthDotsParent = getComputedStyle(dotsParent).width.slice(0, -2);
+      dotsParentWrapper.style.left = "calc(50 % -".concat(widthDotsParent / 2, "px)");
+      var dots = dotsParent.querySelectorAll('li');
+      dots[0].classList.add('slick-active');
+    }
+    ;
+    if (defaultSetAttibuteSlides) {
+      defaultSetAttibuteSlides = false;
+      setAttibuteSlides();
+    }
+  };
+  createDots();
+
+  // ------------------------------------------------------------------------------
+  var moveSlideDots = function moveSlideDots(index) {
+    takeSlides().forEach(function (slide) {
+      return slide.classList.remove('animate__slideInRight');
+    });
+    takeSlides().forEach(function (slide) {
+      return slide.classList.remove('animate__slideInLeft');
+    });
+    takeSlides().forEach(function (slide) {
+      return slide.classList.remove('animate__fadeOutLeft');
+    });
+    takeSlides().forEach(function (slide) {
+      return slide.classList.remove('animate__fadeOutRight');
+    });
+    takeSlides().forEach(function (slide) {
+      return slide.classList.remove('active');
+    });
+    takeSlides().forEach(function (slide) {
+      return slide.classList.add('hidden');
+    });
+    takeSlides()[index].classList.remove('hidden');
+    takeSlides()[index].classList.add('active');
+    console.log('1');
+    arrayDots.forEach(function (dot) {
+      return dot.classList.remove('slick-active');
+    });
+    arrayDots[index].classList.add('slick-active');
+  };
+  var dotsParent = takeDotsParent();
+  var arrayDots = Array.from(dotsParent.children);
+  arrayDots.forEach(function (dot, i) {
+    dot.addEventListener('click', function () {
+      moveSlideDots(i);
+      defaultMoveSlide = true; // Переключатель того что DOTS использовался.
+    });
+  });
+
+  // ------------------------------------------------------------------------------
+
+  var moveSlide = function moveSlide(i) {
+    console.log('1');
+    if (iLastVisibleSlide === 0) {
+      //Когда слайд один на экране то исполнять это.
+
+      if (defaultMoveSlide) {
+        //Сбрасываю все настройки после управления слайдом через DOTS
+
+        takeSlides().forEach(function (item) {
+          return item.classList.remove('hidden');
+        });
+        takeSlides().forEach(function (item) {
+          return item.classList.remove('active');
+        });
+        takeSlides().forEach(function (slide) {
+          return slide.classList.remove('animate__fadeOutRight');
+        });
+        takeSlides().forEach(function (slide) {
+          return slide.classList.remove('animate__slideInLeft');
+        });
+        takeSlides().forEach(function (slide) {
+          return slide.classList.remove('animate__fadeOutLeft');
+        });
+        takeSlides().forEach(function (slide) {
+          return slide.classList.remove('animate__slideInRight');
+        });
+        takeSlides().forEach(function (item, i) {
+          if (i > 0) {
+            item.classList.add('hidden');
+          }
+          if (i < 1) {
+            item.classList.add('active');
+          }
+        });
+        iLastVisibleSlide = 0;
+        defaultMoveSlide = false;
+      }
+      if (i === 1) {
+        takeSlides().forEach(function (slide) {
+          return slide.classList.remove('animate__fadeOutRight');
+        });
+        takeSlides().forEach(function (slide) {
+          return slide.classList.remove('animate__slideInLeft');
+        });
+        takeSlides().forEach(function (slide) {
+          return slide.classList.remove('animate__fadeOutLeft');
+        });
+        takeSlides().forEach(function (slide) {
+          return slide.classList.remove('animate__slideInRight');
+        });
+        takeSlides()[iFirstVisibleSlide].classList.add('animate__fadeOutLeft');
+        setTimeout(function () {
+          slidesParent.insertAdjacentElement('beforeend', takeSlides()[iFirstVisibleSlide]);
+          var iLastSlide = takeSlides().length - 1;
+          takeSlides()[iLastSlide].classList.remove('active');
+          takeSlides()[iLastSlide].classList.add('hidden');
+          takeSlides()[iLastVisibleSlide].classList.remove('hidden');
+          takeSlides()[iLastVisibleSlide].classList.add('active');
+
+          // takeSlides()[iFirstVisibleSlide].classList.add('animate__slideInRight');
+        }, 300);
+      }
+      if (i === -1) {
+        takeSlides().forEach(function (slide) {
+          return slide.classList.remove('animate__fadeOutRight');
+        });
+        takeSlides().forEach(function (slide) {
+          return slide.classList.remove('animate__slideInLeft');
+        });
+        takeSlides().forEach(function (slide) {
+          return slide.classList.remove('animate__fadeOutLeft');
+        });
+        takeSlides().forEach(function (slide) {
+          return slide.classList.remove('animate__slideInRight');
+        });
+        takeSlides()[iFirstVisibleSlide].classList.add('animate__fadeOutRight');
+        setTimeout(function () {
+          var iLastSlide = takeSlides().length - 1;
+          slidesParent.insertAdjacentElement('afterbegin', takeSlides()[iLastSlide]);
+          takeSlides()[iFirstVisibleSlide].classList.remove('hidden');
+          takeSlides()[iFirstVisibleSlide].classList.add('active');
+          takeSlides()[iLastVisibleSlide + 1].classList.add('hidden');
+          takeSlides()[iLastVisibleSlide + 1].classList.remove('active');
+          takeSlides()[iFirstVisibleSlide].classList.add('animate__slideInLeft');
+        }, 300);
+      }
+
+      //Синхноризация открытого слайда с DOTS
+
+      var _dotsParent = takeDotsParent();
+      var _arrayDots = Array.from(_dotsParent.children);
+      _arrayDots.forEach(function (dot) {
+        return dot.classList.remove('slick-active');
+      });
+      _arrayDots[+takeSlides()[0].getAttribute('data-index-slide')].classList.add('slick-active');
+    } else {
+      //Когда слайдов больше одного на экране то исполнять это.
+      if (i === 1) {
+        takeSlides().forEach(function (slide) {
+          return slide.classList.remove('animate__fadeOutRight');
+        });
+        takeSlides().forEach(function (slide) {
+          return slide.classList.remove('animate__slideInLeft');
+        });
+        takeSlides().forEach(function (slide) {
+          return slide.classList.remove('animate__fadeOutLeft');
+        });
+        takeSlides()[iFirstVisibleSlide].classList.add('animate__fadeOutLeft');
+        setTimeout(function () {
+          slidesParent.insertAdjacentElement('beforeend', takeSlides()[iFirstVisibleSlide]);
+          var iLastSlide = takeSlides().length - 1;
+          takeSlides()[iLastSlide].classList.remove('active');
+          takeSlides()[iLastSlide].classList.add('hidden');
+          takeSlides()[iLastVisibleSlide].classList.remove('hidden');
+          takeSlides()[iLastVisibleSlide].classList.add('active');
+          takeSlides().forEach(function (slide) {
+            return slide.classList.remove('animate__slideInRight');
+          });
+          takeSlides()[iLastVisibleSlide].classList.add('animate__slideInRight');
+        }, 300);
+      }
+      if (i === -1) {
+        takeSlides().forEach(function (slide) {
+          return slide.classList.remove('animate__fadeOutLeft');
+        });
+        takeSlides().forEach(function (slide) {
+          return slide.classList.remove('animate__slideInRight');
+        });
+        takeSlides().forEach(function (slide) {
+          return slide.classList.remove('animate__fadeOutRight');
+        });
+        takeSlides()[iLastVisibleSlide].classList.add('animate__fadeOutRight');
+        setTimeout(function () {
+          var iLastSlide = takeSlides().length - 1;
+          slidesParent.insertAdjacentElement('afterbegin', takeSlides()[iLastSlide]);
+          takeSlides()[iFirstVisibleSlide].classList.remove('hidden');
+          takeSlides()[iFirstVisibleSlide].classList.add('active');
+          takeSlides()[iLastVisibleSlide + 1].classList.add('hidden');
+          takeSlides()[iLastVisibleSlide + 1].classList.remove('active');
+          takeSlides().forEach(function (slide) {
+            return slide.classList.remove('animate__slideInLeft');
+          });
+          takeSlides()[iFirstVisibleSlide].classList.add('animate__slideInLeft');
+        }, 300);
+      }
+    }
+  };
+  next.addEventListener('click', function () {
+    return moveSlide(1);
+  });
+  prev.addEventListener('click', function () {
+    return moveSlide(-1);
+  });
+
+  // ------------------------------------------------------------------------------
+
+  var slider = document.querySelector(parentS);
+  var touchStartX = 0;
+  var touchEndX = 0;
+  var swipeThreshold = 50; // Пороговое значение для определения свайпа
+
+  var handleTouchStart = function handleTouchStart(e) {
+    return touchStartX = e.touches[0].clientX;
+  };
+  var handleTouchMove = function handleTouchMove(e) {
+    return touchEndX = touchEndX = e.touches[0].clientX;
+  };
+  ;
+  var handleTouchEnd = function handleTouchEnd() {
+    var swipeLength = touchEndX - touchStartX;
+    // Свайп вправо - переключить на предыдущий слайд
+    if (swipeLength > swipeThreshold) moveSlide(-1);
+    // Свайп влево - переключить на следующий слайд
+    if (swipeLength < -swipeThreshold) moveSlide(1);
+  };
+  var handleResize = function handleResize() {
+    var screenWidth = window.innerWidth;
+    if (screenWidth > 799.98) {
+      // Удалите обработчики событий
+      slider.removeEventListener('touchstart', handleTouchStart);
+      slider.removeEventListener('touchmove', handleTouchMove);
+      slider.removeEventListener('touchend', handleTouchEnd);
+    } else {
+      slider.addEventListener('touchstart', handleTouchStart);
+      slider.addEventListener('touchmove', handleTouchMove);
+      slider.addEventListener('touchend', handleTouchEnd);
+
+      //Выравнивание индикаторов слайдера при динамическом изменении ширины экрана.
+      var dotsParentWrapper = document.querySelector('.advantages > .container > .slick-dots');
+      var widthDotsParent = getComputedStyle(dotsParentWrapper).width.slice(0, -2);
+      dotsParentWrapper.style.left = "calc(50 % -$ {widthDotsParent / 2}px)";
+    }
+  };
+  handleResize();
+  window.addEventListener('resize', handleResize);
+};
+
+//Код навален без оптимизации и лаконичности. Есть много чего оптимизировать.
+
+
+
+/***/ }),
+
 /***/ "./src/js/modules/sliders.js":
 /*!***********************************!*\
   !*** ./src/js/modules/sliders.js ***!
@@ -3321,7 +3925,7 @@ function modals() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "firstScreenSlider": () => (/* binding */ firstScreenSlider)
 /* harmony export */ });
 /* harmony import */ var core_js_modules_es_array_for_each_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.for-each.js */ "./node_modules/core-js/modules/es.array.for-each.js");
 /* harmony import */ var core_js_modules_es_array_for_each_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_for_each_js__WEBPACK_IMPORTED_MODULE_0__);
@@ -3329,289 +3933,131 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
 /* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.array.concat.js */ "./node_modules/core-js/modules/es.array.concat.js");
-/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.array.slice.js */ "./node_modules/core-js/modules/es.array.slice.js");
-/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_web_timers_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/web.timers.js */ "./node_modules/core-js/modules/web.timers.js");
+/* harmony import */ var core_js_modules_web_timers_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_timers_js__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
 
+var firstScreenSlider = function firstScreenSlider() {
+  var slides = document.querySelectorAll('.first-screen .slick-slide'),
+    prev = document.querySelector('.offer__slider-prev-first-screen'),
+    next = document.querySelector('.offer__slider-next-first-screen'),
+    dots = document.querySelectorAll('.first-screen .dot');
+  var index = 0;
 
-function sliders() {
-  function showSlidersBig(slidesItem, sliderSelector, prevSelector, nextSelector, dotsSelector, sliderWrapperSelector, slidesFiledSelector, activeClass) {
-    var slides = document.querySelectorAll(slidesItem);
-    var slider = document.querySelector(sliderSelector);
-    var prev = document.querySelector(prevSelector);
-    var next = document.querySelector(nextSelector);
-    var dots = document.querySelectorAll(dotsSelector);
-    var sliderWrapper = document.querySelector(sliderWrapperSelector);
-    var slidesFiled = document.querySelector(slidesFiledSelector);
-    var slideIndex = 0;
-    var offset = 0;
-    function resizeHandler() {
-      var width = sliderWrapper.clientWidth;
-      slides.forEach(function (item) {
-        item.style.width = "".concat(width, "px");
-      });
-      offset = slideIndex * width;
-      moveSlides();
-    }
-    function moveSlides() {
-      slidesFiled.style.transform = "translateX(-".concat(offset, "px)");
-    }
-    function nextSlide() {
-      if (slideIndex === slides.length - 1) {
-        slideIndex = 0;
-      } else {
-        slideIndex++;
-      }
-      offset = slideIndex * slides[0].clientWidth;
-      moveSlides();
-      showDots();
-    }
-    function prevSlide() {
-      if (slideIndex === 0) {
-        slideIndex = slides.length - 1;
-      } else {
-        slideIndex--;
-      }
-      offset = slideIndex * slides[0].clientWidth;
-      moveSlides();
-      showDots();
-    }
-    function setSlide(slideTo) {
-      slideIndex = slideTo;
-      offset = slideIndex * slides[0].clientWidth;
-      moveSlides();
-      showDots();
-    }
-    function showDots() {
-      dots.forEach(function (dot) {
-        dot.classList.remove(activeClass);
-      });
-      dots[slideIndex].classList.add(activeClass);
-    }
-    window.addEventListener('resize', resizeHandler);
-    slidesFiled.style.width = "".concat(100 * slides.length, "%");
-    slider.style.position = 'relative';
-    slidesFiled.style.display = 'flex';
-    slidesFiled.style.transition = '0.9s all';
-    sliderWrapper.style.overflow = 'hidden';
-    next.addEventListener('click', nextSlide);
-    prev.addEventListener('click', prevSlide);
-    dots.forEach(function (dot, index) {
-      dot.addEventListener('click', function () {
-        setSlide(index);
-      });
+  // ------------------------------------------------------------------------------ move slide
+
+  var moveSlide = function moveSlide(i) {
+    slides.forEach(function (slide) {
+      return slide.classList.remove('animate__fadeOutLeft');
     });
-    resizeHandler();
-    showDots();
-  }
-  showSlidersBig('.first-screen .slick-slide', '.first-screen', '.offer__slider-prev-first-screen', '.offer__slider-next-first-screen', '.first-screen .dot', '.slider-template-first-screen', '.offer__slider-inner-first-screen', 'active-current');
-
-  // --------------Slides advantages--------------
-
-  var slidesAdvantages = document.querySelectorAll('.advantages-item');
-  var sliderAdvantages = document.querySelector('.advantages');
-  var dotsAdvantages = document.querySelectorAll('.advantages .dot');
-  var sliderWrapperAdvantages = document.querySelector('.advantes-row');
-  var slidesFiledAdvantages = document.querySelector('.offer__slider-inner-advantages');
-  var widthAdvantages = sliderWrapperAdvantages.clientWidth;
-  var slideIndexAdvantages = 0;
-  var offsetAdvantages = 0;
-  window.addEventListener('resize', function () {
-    showAdvantages();
+    slides.forEach(function (slide) {
+      return slide.classList.remove('animate__fadeOutRight');
+    });
+    if (i === 1) slides[index].classList.add('animate__fadeOutLeft');
+    if (i === -1) slides[index].classList.add('animate__fadeOutRight');
+    index += i;
+    if (index > slides.length - 1) index = 0;
+    if (index < 0) index = slides.length - 1;
+    setTimeout(function () {
+      slides.forEach(function (slide) {
+        return slide.classList.remove('active');
+      });
+      slides[index].classList.add('active');
+    }, 300);
+    slides.forEach(function (slide) {
+      return slide.classList.remove('animate__slideInRight');
+    });
+    slides.forEach(function (slide) {
+      return slide.classList.remove('animate__slideInLeft');
+    });
+    if (i === 1) slides[index].classList.add('animate__slideInRight');
+    if (i === -1) slides[index].classList.add('animate__slideInLeft');
+    dots.forEach(function (dot) {
+      return dot.classList.remove('slick-active');
+    });
+    dots[index].classList.add('slick-active');
+  };
+  next.addEventListener('click', function () {
+    return moveSlide(1);
   });
-  showAdvantages();
-  function showAdvantages() {
-    if (document.documentElement.clientWidth <= 865) {
-      var showDotsAdvantages = function showDotsAdvantages() {
-        dotsAdvantages.forEach(function (dot) {
-          dot.classList.remove('active-current-advantages');
-        });
-        dotsAdvantages[slideIndexAdvantages].classList.add('active-current-advantages');
-      };
-      var moveSlidesAdvantages = function moveSlidesAdvantages() {
-        slidesFiledAdvantages.style.transform = "translateX(-".concat(offsetAdvantages, "px)");
-      };
-      var setSlideAdvantages = function setSlideAdvantages(slideTo) {
-        slideIndexAdvantages = slideTo;
-        offsetAdvantages = slideIndexAdvantages * widthAdvantages;
-        moveSlidesAdvantages();
-        showDotsAdvantages();
-      };
-      slidesFiledAdvantages.style.width = 100 * slidesAdvantages.length + '%';
-      sliderAdvantages.style.position = 'relative';
-      slidesFiledAdvantages.style.display = 'flex';
-      slidesFiledAdvantages.style.transition = '0.9s all';
-      sliderWrapperAdvantages.style.overflow = 'hidden';
-      slidesAdvantages.forEach(function (item) {
-        item.style.width = "".concat(widthAdvantages, "px");
-      });
-      dotsAdvantages.forEach(function (dot, index) {
-        dot.addEventListener('click', function () {
-          setSlideAdvantages(index);
-        });
-      });
-      showDotsAdvantages();
-    }
-    if (document.documentElement.clientWidth >= 866) {
-      slidesAdvantages.forEach(function (item) {
-        item.style.width = "";
-      });
-      slidesFiledAdvantages.style.width = '';
-    }
-  }
+  prev.addEventListener('click', function () {
+    return moveSlide(-1);
+  });
 
-  // showSlidersSmall
+  // ------------------------------------------------------------------------------ Dots
 
-  function showSlidersSmall(slidesItem, prevSelector, nextSelector, dotsSelector, sliderWrapperSelector, slidesFiledSelector, activeClass) {
-    var addSliderDilivery = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : false;
-    var addSliderServices = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : false;
-    var slides = document.querySelectorAll(slidesItem),
-      prev = document.querySelector(prevSelector),
-      next = document.querySelector(nextSelector),
-      dots = document.querySelectorAll(dotsSelector),
-      sliderWrapper = document.querySelector(sliderWrapperSelector),
-      width = window.getComputedStyle(sliderWrapper).width,
-      slidesFiled = document.querySelector(slidesFiledSelector);
-    var slideIndex = 1,
-      offset = 0;
-    slidesFiled.style.width = 100 * slides.length + '%';
-    slidesFiled.style.display = 'flex';
-    slidesFiled.style.transition = '0.9s all';
-    sliderWrapper.style.overflow = 'hidden';
-    function moveSlides() {
-      slidesFiled.style.transform = "translateX(-".concat(offset, "px)");
-    }
-    slides.forEach(function (item) {
-      item.style.width = width;
+  var moveSlideDots = function moveSlideDots() {
+    slides.forEach(function (slide) {
+      return slide.classList.remove('animate__slideInRight');
     });
-    if (addSliderDilivery) {
-      var addSlideDilivery = function addSlideDilivery(src, title, day, weight, price) {
-        var parent = document.querySelector('.dilivery .offer__slider-inner');
-        var clone = document.createElement('div');
-        clone.classList.add('slider-template__item');
-        clone.innerHTML = "\n                    <div class=\"img-box\">\n                        <img src=".concat(src, " alt=\"dilivery\">\n                    </div>\n                    <div class=\"options\">").concat(title, "</div>\n                    <ul class=\"attr\">\n                        <li class=\"attr-day\">").concat(day, "</li>\n                        <li class=\"attr-weight\">").concat(weight, "</li>\n                    </ul>\n                    <div class=\"price\">\n                        <span>\u043E\u0442</span> ").concat(price, " <span class=\"text-white\">$/\u043A\u0433</span>\n                    </div>\n                    <div class=\"button-group\">\n                        <button data-btn class=\"btn btn-primary\">\u041E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u044F\u0432\u043A\u0443</button>\n                        <button class=\"btn btn-secondary\">\u0417\u0430\u044F\u0432\u043A\u0430</button>\n                    </div>\n                ");
-        parent.append(clone);
-      };
-      addSlideDilivery("assets/img/dilivery/slider-dilivery-1.png", 'Авто - обычная', '9-15 дней', 'от 5 кг', '2,5');
-      addSlideDilivery("assets/img/dilivery/slider-dilivery-2.png", 'Авто - ускоренная', '9-12 дней', 'от 15 кг', '3,5');
-    }
-    if (addSliderServices) {
-      var addSlideServices = function addSlideServices(title, text, style) {
-        var parent = document.querySelector('#services .offer__slider-inner');
-        var clone = document.createElement('div');
-        clone.classList.add('slider-template__item');
-        clone.style = "".concat(style);
-        clone.innerHTML = "\n                    <div class=\"slider-template__item-content\" style=>\n                        <div class=\"title\">".concat(title, "</div>\n                        <div class=\"description\">\n                            ").concat(text, ";\n                        </div>\n                        <div class=\"button-group\">\n                            <button class=\"btn btn-secondary\">\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u0435\u0435</button>\n                        </div>\n                    </div>   \n                ");
-        parent.append(clone);
-      };
-      addSlideServices('Выкуп товара', 'Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину -сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина.', "background-image: url(assets/img/services/slider-services-1.png);");
-      addSlideServices('Страховка груза', 'Компания - это полный комплекс логистических услуг по доставке грузов из Китая в Украину -сборные грузы и цельные товарные партии, услуги посредника ТаоБао, КАРГО Китай-Украина.', "background-image: url(assets/img/services/slider-services-2.png);");
-    }
-    function listenerNext() {
-      if (offset == +width.slice(0, width.length - 2) / 3 * (slides.length - 1)) {
-        //650    px
-        offset = 0;
-      } else {
-        offset += +width.slice(0, width.length - 2) / 3;
-      }
-      moveSlides();
-      if (slideIndex == slides.length) {
-        slideIndex = 1;
-      } else {
-        slideIndex++;
-      }
-    }
-    next.addEventListener('click', listenerNext);
-    function listenerPrev() {
-      if (offset == 0) {
-        offset = +width.slice(0, width.length - 2) / 3 * (slides.length - 1);
-      } else {
-        offset -= +width.slice(0, width.length - 2) / 3;
-      }
-      moveSlides();
-      if (slideIndex == 1) {
-        slideIndex = slides.length;
-      } else {
-        slideIndex--;
-      }
-    }
-    prev.addEventListener('click', listenerPrev);
-    window.addEventListener('resize', function () {
-      widthBigger();
-      widthSmaller();
+    slides.forEach(function (slide) {
+      return slide.classList.remove('animate__slideInLeft');
     });
-    widthBigger();
-    widthSmaller();
-    function widthBigger() {
-      if (document.documentElement.clientWidth <= 1330) {
-        next.removeEventListener('click', listenerNext);
-        prev.removeEventListener('click', listenerPrev);
-        next.addEventListener('click', listenerNext2);
-        prev.addEventListener('click', listenerPrev2);
-      }
-    }
-    function listenerNext2() {
-      if (offset == +width.slice(0, width.length - 2) / 2 * (slides.length - 1)) {
-        //650    px
-        offset = 0;
-      } else {
-        offset += +width.slice(0, width.length - 2) / 2;
-      }
-      moveSlides();
-      if (slideIndex == slides.length) {
-        slideIndex = 1;
-      } else {
-        slideIndex++;
-      }
-    }
-    function listenerPrev2() {
-      if (offset == 0) {
-        offset = +width.slice(0, width.length - 2) / 2 * (slides.length - 1);
-      } else {
-        offset -= +width.slice(0, width.length - 2) / 2;
-      }
-      moveSlides();
-      if (slideIndex == 1) {
-        slideIndex = slides.length;
-      } else {
-        slideIndex--;
-      }
-    }
-    function widthSmaller() {
-      if (document.documentElement.clientWidth <= 865) {
-        var showDots = function showDots() {
-          var i = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-          dots[i].style.opacity = 1;
-        };
-        next.removeEventListener('click', listenerNext2);
-        prev.removeEventListener('click', listenerPrev2);
-        dots.forEach(function (item) {
-          item.classList.remove('active-current');
-        });
-        showDots();
-        dots.forEach(function (dot) {
-          dot.addEventListener('click', function (e) {
-            var slideTo = e.target.getAttribute('data-slide-to');
-            slideIndex = slideTo;
-            offset = +width.slice(0, width.length - 2) * (slideTo - 1);
-            moveSlides();
-            dots.forEach(function (dot) {
-              return dot.style.opacity = ".5";
-            });
-            dots[slideIndex - 1].style.opacity = 1;
-          });
-        });
-      }
-    }
-  }
-  showSlidersSmall('.dilivery .slider-template__item', '.offer__slider-prev', '.offer__slider-next', '.dilivery .dot', '.slider-template', '.offer__slider-inner', 'active-current', true, false);
-  showSlidersSmall('.services .slider-template__item', '.offer__slider-prev-services', '.offer__slider-next-services', '.services .dot', '.services .slider-template', '.services .offer__slider-inner', 'active-current', false, true);
-}
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (sliders);
+    slides.forEach(function (slide) {
+      return slide.classList.remove('animate__fadeOutLeft');
+    });
+    slides.forEach(function (slide) {
+      return slide.classList.remove('animate__fadeOutRight');
+    });
+    slides.forEach(function (slide) {
+      return slide.classList.remove('active');
+    });
+    slides[index].classList.add('active');
+    dots.forEach(function (dot) {
+      return dot.classList.remove('slick-active');
+    });
+    dots[index].classList.add('slick-active');
+  };
+  dots.forEach(function (dot, i) {
+    dot.addEventListener('click', function () {
+      index = i;
+      moveSlideDots();
+    });
+  });
+
+  // ------------------------------------------------------------------------------ Touch
+
+  var slider = document.querySelector('.offer__slider-inner-first-screen');
+  var touchStartX = 0;
+  var touchEndX = 0;
+  var swipeThreshold = 50;
+  var handleTouchStart = function handleTouchStart(e) {
+    return touchStartX = e.touches[0].clientX;
+  };
+  var handleTouchMove = function handleTouchMove(e) {
+    return touchEndX = touchEndX = e.touches[0].clientX;
+  };
+  var handleTouchEnd = function handleTouchEnd() {
+    console.log('hi');
+    var swipeLength = touchEndX - touchStartX;
+    if (swipeLength > swipeThreshold) moveSlide(-1);
+    if (swipeLength < -swipeThreshold) moveSlide(1);
+  };
+  var eventHandlersActive = false; // Переменная для хранения состояния обработчиков событий
+
+  var activateEventHandlers = function activateEventHandlers() {
+    slider.addEventListener('touchstart', handleTouchStart);
+    slider.addEventListener('touchmove', handleTouchMove);
+    slider.addEventListener('touchend', handleTouchEnd);
+    eventHandlersActive = true;
+  };
+  var deactivateEventHandlers = function deactivateEventHandlers() {
+    slider.removeEventListener('touchstart', handleTouchStart);
+    slider.removeEventListener('touchmove', handleTouchMove);
+    slider.removeEventListener('touchend', handleTouchEnd);
+    eventHandlersActive = false;
+  };
+  var handleResize = function handleResize() {
+    var screenWidth = window.innerWidth;
+    if (screenWidth > 649.98 && eventHandlersActive) deactivateEventHandlers();
+    if (screenWidth <= 649.98 && !eventHandlersActive) activateEventHandlers();
+  };
+  handleResize();
+  window.addEventListener('resize', handleResize);
+};
+
 
 /***/ }),
 
@@ -8085,6 +8531,25 @@ module.exports = function (argument) {
 
 /***/ }),
 
+/***/ "./node_modules/core-js/internals/a-possible-prototype.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/core-js/internals/a-possible-prototype.js ***!
+  \****************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var isCallable = __webpack_require__(/*! ../internals/is-callable */ "./node_modules/core-js/internals/is-callable.js");
+
+var $String = String;
+var $TypeError = TypeError;
+
+module.exports = function (argument) {
+  if (typeof argument == 'object' || isCallable(argument)) return argument;
+  throw $TypeError("Can't set " + $String(argument) + ' as a prototype');
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/internals/an-object.js":
 /*!*****************************************************!*\
   !*** ./node_modules/core-js/internals/an-object.js ***!
@@ -8124,6 +8589,63 @@ module.exports = !STRICT_METHOD ? function forEach(callbackfn /* , thisArg */) {
   return $forEach(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
 // eslint-disable-next-line es/no-array-prototype-foreach -- safe
 } : [].forEach;
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/array-from.js":
+/*!******************************************************!*\
+  !*** ./node_modules/core-js/internals/array-from.js ***!
+  \******************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+var bind = __webpack_require__(/*! ../internals/function-bind-context */ "./node_modules/core-js/internals/function-bind-context.js");
+var call = __webpack_require__(/*! ../internals/function-call */ "./node_modules/core-js/internals/function-call.js");
+var toObject = __webpack_require__(/*! ../internals/to-object */ "./node_modules/core-js/internals/to-object.js");
+var callWithSafeIterationClosing = __webpack_require__(/*! ../internals/call-with-safe-iteration-closing */ "./node_modules/core-js/internals/call-with-safe-iteration-closing.js");
+var isArrayIteratorMethod = __webpack_require__(/*! ../internals/is-array-iterator-method */ "./node_modules/core-js/internals/is-array-iterator-method.js");
+var isConstructor = __webpack_require__(/*! ../internals/is-constructor */ "./node_modules/core-js/internals/is-constructor.js");
+var lengthOfArrayLike = __webpack_require__(/*! ../internals/length-of-array-like */ "./node_modules/core-js/internals/length-of-array-like.js");
+var createProperty = __webpack_require__(/*! ../internals/create-property */ "./node_modules/core-js/internals/create-property.js");
+var getIterator = __webpack_require__(/*! ../internals/get-iterator */ "./node_modules/core-js/internals/get-iterator.js");
+var getIteratorMethod = __webpack_require__(/*! ../internals/get-iterator-method */ "./node_modules/core-js/internals/get-iterator-method.js");
+
+var $Array = Array;
+
+// `Array.from` method implementation
+// https://tc39.es/ecma262/#sec-array.from
+module.exports = function from(arrayLike /* , mapfn = undefined, thisArg = undefined */) {
+  var O = toObject(arrayLike);
+  var IS_CONSTRUCTOR = isConstructor(this);
+  var argumentsLength = arguments.length;
+  var mapfn = argumentsLength > 1 ? arguments[1] : undefined;
+  var mapping = mapfn !== undefined;
+  if (mapping) mapfn = bind(mapfn, argumentsLength > 2 ? arguments[2] : undefined);
+  var iteratorMethod = getIteratorMethod(O);
+  var index = 0;
+  var length, result, step, iterator, next, value;
+  // if the target is not iterable or it's an array with the default iterator - use a simple case
+  if (iteratorMethod && !(this === $Array && isArrayIteratorMethod(iteratorMethod))) {
+    iterator = getIterator(O, iteratorMethod);
+    next = iterator.next;
+    result = IS_CONSTRUCTOR ? new this() : [];
+    for (;!(step = call(next, iterator)).done; index++) {
+      value = mapping ? callWithSafeIterationClosing(iterator, mapfn, [step.value, index], true) : step.value;
+      createProperty(result, index, value);
+    }
+  } else {
+    length = lengthOfArrayLike(O);
+    result = IS_CONSTRUCTOR ? new this(length) : $Array(length);
+    for (;length > index; index++) {
+      value = mapping ? mapfn(O[index], index) : O[index];
+      createProperty(result, index, value);
+    }
+  }
+  result.length = index;
+  return result;
+};
 
 
 /***/ }),
@@ -8365,6 +8887,75 @@ module.exports = function (originalArray, length) {
 
 /***/ }),
 
+/***/ "./node_modules/core-js/internals/call-with-safe-iteration-closing.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/core-js/internals/call-with-safe-iteration-closing.js ***!
+  \****************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var anObject = __webpack_require__(/*! ../internals/an-object */ "./node_modules/core-js/internals/an-object.js");
+var iteratorClose = __webpack_require__(/*! ../internals/iterator-close */ "./node_modules/core-js/internals/iterator-close.js");
+
+// call something on iterator step with safe closing on error
+module.exports = function (iterator, fn, value, ENTRIES) {
+  try {
+    return ENTRIES ? fn(anObject(value)[0], value[1]) : fn(value);
+  } catch (error) {
+    iteratorClose(iterator, 'throw', error);
+  }
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/check-correctness-of-iteration.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/core-js/internals/check-correctness-of-iteration.js ***!
+  \**************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
+
+var ITERATOR = wellKnownSymbol('iterator');
+var SAFE_CLOSING = false;
+
+try {
+  var called = 0;
+  var iteratorWithReturn = {
+    next: function () {
+      return { done: !!called++ };
+    },
+    'return': function () {
+      SAFE_CLOSING = true;
+    }
+  };
+  iteratorWithReturn[ITERATOR] = function () {
+    return this;
+  };
+  // eslint-disable-next-line es/no-array-from, no-throw-literal -- required for testing
+  Array.from(iteratorWithReturn, function () { throw 2; });
+} catch (error) { /* empty */ }
+
+module.exports = function (exec, SKIP_CLOSING) {
+  if (!SKIP_CLOSING && !SAFE_CLOSING) return false;
+  var ITERATION_SUPPORT = false;
+  try {
+    var object = {};
+    object[ITERATOR] = function () {
+      return {
+        next: function () {
+          return { done: ITERATION_SUPPORT = true };
+        }
+      };
+    };
+    exec(object);
+  } catch (error) { /* empty */ }
+  return ITERATION_SUPPORT;
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/internals/classof-raw.js":
 /*!*******************************************************!*\
   !*** ./node_modules/core-js/internals/classof-raw.js ***!
@@ -8443,6 +9034,39 @@ module.exports = function (target, source, exceptions) {
       defineProperty(target, key, getOwnPropertyDescriptor(source, key));
     }
   }
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/correct-prototype-getter.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/core-js/internals/correct-prototype-getter.js ***!
+  \********************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js/internals/fails.js");
+
+module.exports = !fails(function () {
+  function F() { /* empty */ }
+  F.prototype.constructor = null;
+  // eslint-disable-next-line es/no-object-getprototypeof -- required for testing
+  return Object.getPrototypeOf(new F()) !== F.prototype;
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/create-iter-result-object.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/core-js/internals/create-iter-result-object.js ***!
+  \*********************************************************************/
+/***/ ((module) => {
+
+// `CreateIterResultObject` abstract operation
+// https://tc39.es/ecma262/#sec-createiterresultobject
+module.exports = function (value, done) {
+  return { value: value, done: done };
 };
 
 
@@ -8623,23 +9247,6 @@ module.exports = function (it) {
 
 /***/ }),
 
-/***/ "./node_modules/core-js/internals/does-not-exceed-safe-integer.js":
-/*!************************************************************************!*\
-  !*** ./node_modules/core-js/internals/does-not-exceed-safe-integer.js ***!
-  \************************************************************************/
-/***/ ((module) => {
-
-var $TypeError = TypeError;
-var MAX_SAFE_INTEGER = 0x1FFFFFFFFFFFFF; // 2 ** 53 - 1 == 9007199254740991
-
-module.exports = function (it) {
-  if (it > MAX_SAFE_INTEGER) throw $TypeError('Maximum allowed index exceeded');
-  return it;
-};
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js/internals/dom-iterables.js":
 /*!*********************************************************!*\
   !*** ./node_modules/core-js/internals/dom-iterables.js ***!
@@ -8698,6 +9305,18 @@ var classList = documentCreateElement('span').classList;
 var DOMTokenListPrototype = classList && classList.constructor && classList.constructor.prototype;
 
 module.exports = DOMTokenListPrototype === Object.prototype ? undefined : DOMTokenListPrototype;
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/engine-is-bun.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js/internals/engine-is-bun.js ***!
+  \*********************************************************/
+/***/ ((module) => {
+
+/* global Bun -- Deno case */
+module.exports = typeof Bun == 'function' && Bun && typeof Bun.version == 'string';
 
 
 /***/ }),
@@ -8851,6 +9470,26 @@ module.exports = function (exec) {
 
 /***/ }),
 
+/***/ "./node_modules/core-js/internals/function-apply.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/core-js/internals/function-apply.js ***!
+  \**********************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var NATIVE_BIND = __webpack_require__(/*! ../internals/function-bind-native */ "./node_modules/core-js/internals/function-bind-native.js");
+
+var FunctionPrototype = Function.prototype;
+var apply = FunctionPrototype.apply;
+var call = FunctionPrototype.call;
+
+// eslint-disable-next-line es/no-reflect -- safe
+module.exports = typeof Reflect == 'object' && Reflect.apply || (NATIVE_BIND ? call.bind(apply) : function () {
+  return call.apply(apply, arguments);
+});
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/internals/function-bind-context.js":
 /*!*****************************************************************!*\
   !*** ./node_modules/core-js/internals/function-bind-context.js ***!
@@ -8996,6 +9635,52 @@ module.exports = function (namespace, method) {
 
 /***/ }),
 
+/***/ "./node_modules/core-js/internals/get-iterator-method.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/core-js/internals/get-iterator-method.js ***!
+  \***************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var classof = __webpack_require__(/*! ../internals/classof */ "./node_modules/core-js/internals/classof.js");
+var getMethod = __webpack_require__(/*! ../internals/get-method */ "./node_modules/core-js/internals/get-method.js");
+var isNullOrUndefined = __webpack_require__(/*! ../internals/is-null-or-undefined */ "./node_modules/core-js/internals/is-null-or-undefined.js");
+var Iterators = __webpack_require__(/*! ../internals/iterators */ "./node_modules/core-js/internals/iterators.js");
+var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
+
+var ITERATOR = wellKnownSymbol('iterator');
+
+module.exports = function (it) {
+  if (!isNullOrUndefined(it)) return getMethod(it, ITERATOR)
+    || getMethod(it, '@@iterator')
+    || Iterators[classof(it)];
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/get-iterator.js":
+/*!********************************************************!*\
+  !*** ./node_modules/core-js/internals/get-iterator.js ***!
+  \********************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var call = __webpack_require__(/*! ../internals/function-call */ "./node_modules/core-js/internals/function-call.js");
+var aCallable = __webpack_require__(/*! ../internals/a-callable */ "./node_modules/core-js/internals/a-callable.js");
+var anObject = __webpack_require__(/*! ../internals/an-object */ "./node_modules/core-js/internals/an-object.js");
+var tryToString = __webpack_require__(/*! ../internals/try-to-string */ "./node_modules/core-js/internals/try-to-string.js");
+var getIteratorMethod = __webpack_require__(/*! ../internals/get-iterator-method */ "./node_modules/core-js/internals/get-iterator-method.js");
+
+var $TypeError = TypeError;
+
+module.exports = function (argument, usingIterator) {
+  var iteratorMethod = arguments.length < 2 ? getIteratorMethod(argument) : usingIterator;
+  if (aCallable(iteratorMethod)) return anObject(call(iteratorMethod, argument));
+  throw $TypeError(tryToString(argument) + ' is not iterable');
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/internals/get-method.js":
 /*!******************************************************!*\
   !*** ./node_modules/core-js/internals/get-method.js ***!
@@ -9067,6 +9752,19 @@ module.exports = Object.hasOwn || function hasOwn(it, key) {
 /***/ ((module) => {
 
 module.exports = {};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/html.js":
+/*!************************************************!*\
+  !*** ./node_modules/core-js/internals/html.js ***!
+  \************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var getBuiltIn = __webpack_require__(/*! ../internals/get-built-in */ "./node_modules/core-js/internals/get-built-in.js");
+
+module.exports = getBuiltIn('document', 'documentElement');
 
 
 /***/ }),
@@ -9216,6 +9914,26 @@ module.exports = {
   has: has,
   enforce: enforce,
   getterFor: getterFor
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/is-array-iterator-method.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/core-js/internals/is-array-iterator-method.js ***!
+  \********************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
+var Iterators = __webpack_require__(/*! ../internals/iterators */ "./node_modules/core-js/internals/iterators.js");
+
+var ITERATOR = wellKnownSymbol('iterator');
+var ArrayPrototype = Array.prototype;
+
+// check on default Array iterator
+module.exports = function (it) {
+  return it !== undefined && (Iterators.Array === it || ArrayPrototype[ITERATOR] === it);
 };
 
 
@@ -9423,6 +10141,247 @@ module.exports = USE_SYMBOL_AS_UID ? function (it) {
 
 /***/ }),
 
+/***/ "./node_modules/core-js/internals/iterator-close.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/core-js/internals/iterator-close.js ***!
+  \**********************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var call = __webpack_require__(/*! ../internals/function-call */ "./node_modules/core-js/internals/function-call.js");
+var anObject = __webpack_require__(/*! ../internals/an-object */ "./node_modules/core-js/internals/an-object.js");
+var getMethod = __webpack_require__(/*! ../internals/get-method */ "./node_modules/core-js/internals/get-method.js");
+
+module.exports = function (iterator, kind, value) {
+  var innerResult, innerError;
+  anObject(iterator);
+  try {
+    innerResult = getMethod(iterator, 'return');
+    if (!innerResult) {
+      if (kind === 'throw') throw value;
+      return value;
+    }
+    innerResult = call(innerResult, iterator);
+  } catch (error) {
+    innerError = true;
+    innerResult = error;
+  }
+  if (kind === 'throw') throw value;
+  if (innerError) throw innerResult;
+  anObject(innerResult);
+  return value;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/iterator-create-constructor.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/core-js/internals/iterator-create-constructor.js ***!
+  \***********************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+var IteratorPrototype = (__webpack_require__(/*! ../internals/iterators-core */ "./node_modules/core-js/internals/iterators-core.js").IteratorPrototype);
+var create = __webpack_require__(/*! ../internals/object-create */ "./node_modules/core-js/internals/object-create.js");
+var createPropertyDescriptor = __webpack_require__(/*! ../internals/create-property-descriptor */ "./node_modules/core-js/internals/create-property-descriptor.js");
+var setToStringTag = __webpack_require__(/*! ../internals/set-to-string-tag */ "./node_modules/core-js/internals/set-to-string-tag.js");
+var Iterators = __webpack_require__(/*! ../internals/iterators */ "./node_modules/core-js/internals/iterators.js");
+
+var returnThis = function () { return this; };
+
+module.exports = function (IteratorConstructor, NAME, next, ENUMERABLE_NEXT) {
+  var TO_STRING_TAG = NAME + ' Iterator';
+  IteratorConstructor.prototype = create(IteratorPrototype, { next: createPropertyDescriptor(+!ENUMERABLE_NEXT, next) });
+  setToStringTag(IteratorConstructor, TO_STRING_TAG, false, true);
+  Iterators[TO_STRING_TAG] = returnThis;
+  return IteratorConstructor;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/iterator-define.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/core-js/internals/iterator-define.js ***!
+  \***********************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
+var call = __webpack_require__(/*! ../internals/function-call */ "./node_modules/core-js/internals/function-call.js");
+var IS_PURE = __webpack_require__(/*! ../internals/is-pure */ "./node_modules/core-js/internals/is-pure.js");
+var FunctionName = __webpack_require__(/*! ../internals/function-name */ "./node_modules/core-js/internals/function-name.js");
+var isCallable = __webpack_require__(/*! ../internals/is-callable */ "./node_modules/core-js/internals/is-callable.js");
+var createIteratorConstructor = __webpack_require__(/*! ../internals/iterator-create-constructor */ "./node_modules/core-js/internals/iterator-create-constructor.js");
+var getPrototypeOf = __webpack_require__(/*! ../internals/object-get-prototype-of */ "./node_modules/core-js/internals/object-get-prototype-of.js");
+var setPrototypeOf = __webpack_require__(/*! ../internals/object-set-prototype-of */ "./node_modules/core-js/internals/object-set-prototype-of.js");
+var setToStringTag = __webpack_require__(/*! ../internals/set-to-string-tag */ "./node_modules/core-js/internals/set-to-string-tag.js");
+var createNonEnumerableProperty = __webpack_require__(/*! ../internals/create-non-enumerable-property */ "./node_modules/core-js/internals/create-non-enumerable-property.js");
+var defineBuiltIn = __webpack_require__(/*! ../internals/define-built-in */ "./node_modules/core-js/internals/define-built-in.js");
+var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
+var Iterators = __webpack_require__(/*! ../internals/iterators */ "./node_modules/core-js/internals/iterators.js");
+var IteratorsCore = __webpack_require__(/*! ../internals/iterators-core */ "./node_modules/core-js/internals/iterators-core.js");
+
+var PROPER_FUNCTION_NAME = FunctionName.PROPER;
+var CONFIGURABLE_FUNCTION_NAME = FunctionName.CONFIGURABLE;
+var IteratorPrototype = IteratorsCore.IteratorPrototype;
+var BUGGY_SAFARI_ITERATORS = IteratorsCore.BUGGY_SAFARI_ITERATORS;
+var ITERATOR = wellKnownSymbol('iterator');
+var KEYS = 'keys';
+var VALUES = 'values';
+var ENTRIES = 'entries';
+
+var returnThis = function () { return this; };
+
+module.exports = function (Iterable, NAME, IteratorConstructor, next, DEFAULT, IS_SET, FORCED) {
+  createIteratorConstructor(IteratorConstructor, NAME, next);
+
+  var getIterationMethod = function (KIND) {
+    if (KIND === DEFAULT && defaultIterator) return defaultIterator;
+    if (!BUGGY_SAFARI_ITERATORS && KIND in IterablePrototype) return IterablePrototype[KIND];
+    switch (KIND) {
+      case KEYS: return function keys() { return new IteratorConstructor(this, KIND); };
+      case VALUES: return function values() { return new IteratorConstructor(this, KIND); };
+      case ENTRIES: return function entries() { return new IteratorConstructor(this, KIND); };
+    } return function () { return new IteratorConstructor(this); };
+  };
+
+  var TO_STRING_TAG = NAME + ' Iterator';
+  var INCORRECT_VALUES_NAME = false;
+  var IterablePrototype = Iterable.prototype;
+  var nativeIterator = IterablePrototype[ITERATOR]
+    || IterablePrototype['@@iterator']
+    || DEFAULT && IterablePrototype[DEFAULT];
+  var defaultIterator = !BUGGY_SAFARI_ITERATORS && nativeIterator || getIterationMethod(DEFAULT);
+  var anyNativeIterator = NAME == 'Array' ? IterablePrototype.entries || nativeIterator : nativeIterator;
+  var CurrentIteratorPrototype, methods, KEY;
+
+  // fix native
+  if (anyNativeIterator) {
+    CurrentIteratorPrototype = getPrototypeOf(anyNativeIterator.call(new Iterable()));
+    if (CurrentIteratorPrototype !== Object.prototype && CurrentIteratorPrototype.next) {
+      if (!IS_PURE && getPrototypeOf(CurrentIteratorPrototype) !== IteratorPrototype) {
+        if (setPrototypeOf) {
+          setPrototypeOf(CurrentIteratorPrototype, IteratorPrototype);
+        } else if (!isCallable(CurrentIteratorPrototype[ITERATOR])) {
+          defineBuiltIn(CurrentIteratorPrototype, ITERATOR, returnThis);
+        }
+      }
+      // Set @@toStringTag to native iterators
+      setToStringTag(CurrentIteratorPrototype, TO_STRING_TAG, true, true);
+      if (IS_PURE) Iterators[TO_STRING_TAG] = returnThis;
+    }
+  }
+
+  // fix Array.prototype.{ values, @@iterator }.name in V8 / FF
+  if (PROPER_FUNCTION_NAME && DEFAULT == VALUES && nativeIterator && nativeIterator.name !== VALUES) {
+    if (!IS_PURE && CONFIGURABLE_FUNCTION_NAME) {
+      createNonEnumerableProperty(IterablePrototype, 'name', VALUES);
+    } else {
+      INCORRECT_VALUES_NAME = true;
+      defaultIterator = function values() { return call(nativeIterator, this); };
+    }
+  }
+
+  // export additional methods
+  if (DEFAULT) {
+    methods = {
+      values: getIterationMethod(VALUES),
+      keys: IS_SET ? defaultIterator : getIterationMethod(KEYS),
+      entries: getIterationMethod(ENTRIES)
+    };
+    if (FORCED) for (KEY in methods) {
+      if (BUGGY_SAFARI_ITERATORS || INCORRECT_VALUES_NAME || !(KEY in IterablePrototype)) {
+        defineBuiltIn(IterablePrototype, KEY, methods[KEY]);
+      }
+    } else $({ target: NAME, proto: true, forced: BUGGY_SAFARI_ITERATORS || INCORRECT_VALUES_NAME }, methods);
+  }
+
+  // define iterator
+  if ((!IS_PURE || FORCED) && IterablePrototype[ITERATOR] !== defaultIterator) {
+    defineBuiltIn(IterablePrototype, ITERATOR, defaultIterator, { name: DEFAULT });
+  }
+  Iterators[NAME] = defaultIterator;
+
+  return methods;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/iterators-core.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/core-js/internals/iterators-core.js ***!
+  \**********************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js/internals/fails.js");
+var isCallable = __webpack_require__(/*! ../internals/is-callable */ "./node_modules/core-js/internals/is-callable.js");
+var isObject = __webpack_require__(/*! ../internals/is-object */ "./node_modules/core-js/internals/is-object.js");
+var create = __webpack_require__(/*! ../internals/object-create */ "./node_modules/core-js/internals/object-create.js");
+var getPrototypeOf = __webpack_require__(/*! ../internals/object-get-prototype-of */ "./node_modules/core-js/internals/object-get-prototype-of.js");
+var defineBuiltIn = __webpack_require__(/*! ../internals/define-built-in */ "./node_modules/core-js/internals/define-built-in.js");
+var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
+var IS_PURE = __webpack_require__(/*! ../internals/is-pure */ "./node_modules/core-js/internals/is-pure.js");
+
+var ITERATOR = wellKnownSymbol('iterator');
+var BUGGY_SAFARI_ITERATORS = false;
+
+// `%IteratorPrototype%` object
+// https://tc39.es/ecma262/#sec-%iteratorprototype%-object
+var IteratorPrototype, PrototypeOfArrayIteratorPrototype, arrayIterator;
+
+/* eslint-disable es/no-array-prototype-keys -- safe */
+if ([].keys) {
+  arrayIterator = [].keys();
+  // Safari 8 has buggy iterators w/o `next`
+  if (!('next' in arrayIterator)) BUGGY_SAFARI_ITERATORS = true;
+  else {
+    PrototypeOfArrayIteratorPrototype = getPrototypeOf(getPrototypeOf(arrayIterator));
+    if (PrototypeOfArrayIteratorPrototype !== Object.prototype) IteratorPrototype = PrototypeOfArrayIteratorPrototype;
+  }
+}
+
+var NEW_ITERATOR_PROTOTYPE = !isObject(IteratorPrototype) || fails(function () {
+  var test = {};
+  // FF44- legacy iterators case
+  return IteratorPrototype[ITERATOR].call(test) !== test;
+});
+
+if (NEW_ITERATOR_PROTOTYPE) IteratorPrototype = {};
+else if (IS_PURE) IteratorPrototype = create(IteratorPrototype);
+
+// `%IteratorPrototype%[@@iterator]()` method
+// https://tc39.es/ecma262/#sec-%iteratorprototype%-@@iterator
+if (!isCallable(IteratorPrototype[ITERATOR])) {
+  defineBuiltIn(IteratorPrototype, ITERATOR, function () {
+    return this;
+  });
+}
+
+module.exports = {
+  IteratorPrototype: IteratorPrototype,
+  BUGGY_SAFARI_ITERATORS: BUGGY_SAFARI_ITERATORS
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/iterators.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/core-js/internals/iterators.js ***!
+  \*****************************************************/
+/***/ ((module) => {
+
+module.exports = {};
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/internals/length-of-array-like.js":
 /*!****************************************************************!*\
   !*** ./node_modules/core-js/internals/length-of-array-like.js ***!
@@ -9519,6 +10478,129 @@ var floor = Math.floor;
 module.exports = Math.trunc || function trunc(x) {
   var n = +x;
   return (n > 0 ? floor : ceil)(n);
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/object-create.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js/internals/object-create.js ***!
+  \*********************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+/* global ActiveXObject -- old IE, WSH */
+var anObject = __webpack_require__(/*! ../internals/an-object */ "./node_modules/core-js/internals/an-object.js");
+var definePropertiesModule = __webpack_require__(/*! ../internals/object-define-properties */ "./node_modules/core-js/internals/object-define-properties.js");
+var enumBugKeys = __webpack_require__(/*! ../internals/enum-bug-keys */ "./node_modules/core-js/internals/enum-bug-keys.js");
+var hiddenKeys = __webpack_require__(/*! ../internals/hidden-keys */ "./node_modules/core-js/internals/hidden-keys.js");
+var html = __webpack_require__(/*! ../internals/html */ "./node_modules/core-js/internals/html.js");
+var documentCreateElement = __webpack_require__(/*! ../internals/document-create-element */ "./node_modules/core-js/internals/document-create-element.js");
+var sharedKey = __webpack_require__(/*! ../internals/shared-key */ "./node_modules/core-js/internals/shared-key.js");
+
+var GT = '>';
+var LT = '<';
+var PROTOTYPE = 'prototype';
+var SCRIPT = 'script';
+var IE_PROTO = sharedKey('IE_PROTO');
+
+var EmptyConstructor = function () { /* empty */ };
+
+var scriptTag = function (content) {
+  return LT + SCRIPT + GT + content + LT + '/' + SCRIPT + GT;
+};
+
+// Create object with fake `null` prototype: use ActiveX Object with cleared prototype
+var NullProtoObjectViaActiveX = function (activeXDocument) {
+  activeXDocument.write(scriptTag(''));
+  activeXDocument.close();
+  var temp = activeXDocument.parentWindow.Object;
+  activeXDocument = null; // avoid memory leak
+  return temp;
+};
+
+// Create object with fake `null` prototype: use iframe Object with cleared prototype
+var NullProtoObjectViaIFrame = function () {
+  // Thrash, waste and sodomy: IE GC bug
+  var iframe = documentCreateElement('iframe');
+  var JS = 'java' + SCRIPT + ':';
+  var iframeDocument;
+  iframe.style.display = 'none';
+  html.appendChild(iframe);
+  // https://github.com/zloirock/core-js/issues/475
+  iframe.src = String(JS);
+  iframeDocument = iframe.contentWindow.document;
+  iframeDocument.open();
+  iframeDocument.write(scriptTag('document.F=Object'));
+  iframeDocument.close();
+  return iframeDocument.F;
+};
+
+// Check for document.domain and active x support
+// No need to use active x approach when document.domain is not set
+// see https://github.com/es-shims/es5-shim/issues/150
+// variation of https://github.com/kitcambridge/es5-shim/commit/4f738ac066346
+// avoid IE GC bug
+var activeXDocument;
+var NullProtoObject = function () {
+  try {
+    activeXDocument = new ActiveXObject('htmlfile');
+  } catch (error) { /* ignore */ }
+  NullProtoObject = typeof document != 'undefined'
+    ? document.domain && activeXDocument
+      ? NullProtoObjectViaActiveX(activeXDocument) // old IE
+      : NullProtoObjectViaIFrame()
+    : NullProtoObjectViaActiveX(activeXDocument); // WSH
+  var length = enumBugKeys.length;
+  while (length--) delete NullProtoObject[PROTOTYPE][enumBugKeys[length]];
+  return NullProtoObject();
+};
+
+hiddenKeys[IE_PROTO] = true;
+
+// `Object.create` method
+// https://tc39.es/ecma262/#sec-object.create
+// eslint-disable-next-line es/no-object-create -- safe
+module.exports = Object.create || function create(O, Properties) {
+  var result;
+  if (O !== null) {
+    EmptyConstructor[PROTOTYPE] = anObject(O);
+    result = new EmptyConstructor();
+    EmptyConstructor[PROTOTYPE] = null;
+    // add "__proto__" for Object.getPrototypeOf polyfill
+    result[IE_PROTO] = O;
+  } else result = NullProtoObject();
+  return Properties === undefined ? result : definePropertiesModule.f(result, Properties);
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/object-define-properties.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/core-js/internals/object-define-properties.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+var DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ "./node_modules/core-js/internals/descriptors.js");
+var V8_PROTOTYPE_DEFINE_BUG = __webpack_require__(/*! ../internals/v8-prototype-define-bug */ "./node_modules/core-js/internals/v8-prototype-define-bug.js");
+var definePropertyModule = __webpack_require__(/*! ../internals/object-define-property */ "./node_modules/core-js/internals/object-define-property.js");
+var anObject = __webpack_require__(/*! ../internals/an-object */ "./node_modules/core-js/internals/an-object.js");
+var toIndexedObject = __webpack_require__(/*! ../internals/to-indexed-object */ "./node_modules/core-js/internals/to-indexed-object.js");
+var objectKeys = __webpack_require__(/*! ../internals/object-keys */ "./node_modules/core-js/internals/object-keys.js");
+
+// `Object.defineProperties` method
+// https://tc39.es/ecma262/#sec-object.defineproperties
+// eslint-disable-next-line es/no-object-defineproperties -- safe
+exports.f = DESCRIPTORS && !V8_PROTOTYPE_DEFINE_BUG ? Object.defineProperties : function defineProperties(O, Properties) {
+  anObject(O);
+  var props = toIndexedObject(Properties);
+  var keys = objectKeys(Properties);
+  var length = keys.length;
+  var index = 0;
+  var key;
+  while (length > index) definePropertyModule.f(O, key = keys[index++], props[key]);
+  return O;
 };
 
 
@@ -9642,6 +10724,37 @@ exports.f = Object.getOwnPropertySymbols;
 
 /***/ }),
 
+/***/ "./node_modules/core-js/internals/object-get-prototype-of.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/core-js/internals/object-get-prototype-of.js ***!
+  \*******************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var hasOwn = __webpack_require__(/*! ../internals/has-own-property */ "./node_modules/core-js/internals/has-own-property.js");
+var isCallable = __webpack_require__(/*! ../internals/is-callable */ "./node_modules/core-js/internals/is-callable.js");
+var toObject = __webpack_require__(/*! ../internals/to-object */ "./node_modules/core-js/internals/to-object.js");
+var sharedKey = __webpack_require__(/*! ../internals/shared-key */ "./node_modules/core-js/internals/shared-key.js");
+var CORRECT_PROTOTYPE_GETTER = __webpack_require__(/*! ../internals/correct-prototype-getter */ "./node_modules/core-js/internals/correct-prototype-getter.js");
+
+var IE_PROTO = sharedKey('IE_PROTO');
+var $Object = Object;
+var ObjectPrototype = $Object.prototype;
+
+// `Object.getPrototypeOf` method
+// https://tc39.es/ecma262/#sec-object.getprototypeof
+// eslint-disable-next-line es/no-object-getprototypeof -- safe
+module.exports = CORRECT_PROTOTYPE_GETTER ? $Object.getPrototypeOf : function (O) {
+  var object = toObject(O);
+  if (hasOwn(object, IE_PROTO)) return object[IE_PROTO];
+  var constructor = object.constructor;
+  if (isCallable(constructor) && object instanceof constructor) {
+    return constructor.prototype;
+  } return object instanceof $Object ? ObjectPrototype : null;
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/internals/object-is-prototype-of.js":
 /*!******************************************************************!*\
   !*** ./node_modules/core-js/internals/object-is-prototype-of.js ***!
@@ -9685,6 +10798,25 @@ module.exports = function (object, names) {
 
 /***/ }),
 
+/***/ "./node_modules/core-js/internals/object-keys.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/core-js/internals/object-keys.js ***!
+  \*******************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var internalObjectKeys = __webpack_require__(/*! ../internals/object-keys-internal */ "./node_modules/core-js/internals/object-keys-internal.js");
+var enumBugKeys = __webpack_require__(/*! ../internals/enum-bug-keys */ "./node_modules/core-js/internals/enum-bug-keys.js");
+
+// `Object.keys` method
+// https://tc39.es/ecma262/#sec-object.keys
+// eslint-disable-next-line es/no-object-keys -- safe
+module.exports = Object.keys || function keys(O) {
+  return internalObjectKeys(O, enumBugKeys);
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/internals/object-property-is-enumerable.js":
 /*!*************************************************************************!*\
   !*** ./node_modules/core-js/internals/object-property-is-enumerable.js ***!
@@ -9706,6 +10838,43 @@ exports.f = NASHORN_BUG ? function propertyIsEnumerable(V) {
   var descriptor = getOwnPropertyDescriptor(this, V);
   return !!descriptor && descriptor.enumerable;
 } : $propertyIsEnumerable;
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/object-set-prototype-of.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/core-js/internals/object-set-prototype-of.js ***!
+  \*******************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+/* eslint-disable no-proto -- safe */
+var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "./node_modules/core-js/internals/function-uncurry-this.js");
+var anObject = __webpack_require__(/*! ../internals/an-object */ "./node_modules/core-js/internals/an-object.js");
+var aPossiblePrototype = __webpack_require__(/*! ../internals/a-possible-prototype */ "./node_modules/core-js/internals/a-possible-prototype.js");
+
+// `Object.setPrototypeOf` method
+// https://tc39.es/ecma262/#sec-object.setprototypeof
+// Works with __proto__ only. Old v8 can't work with null proto objects.
+// eslint-disable-next-line es/no-object-setprototypeof -- safe
+module.exports = Object.setPrototypeOf || ('__proto__' in {} ? function () {
+  var CORRECT_SETTER = false;
+  var test = {};
+  var setter;
+  try {
+    // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
+    setter = uncurryThis(Object.getOwnPropertyDescriptor(Object.prototype, '__proto__').set);
+    setter(test, []);
+    CORRECT_SETTER = test instanceof Array;
+  } catch (error) { /* empty */ }
+  return function setPrototypeOf(O, proto) {
+    anObject(O);
+    aPossiblePrototype(proto);
+    if (CORRECT_SETTER) setter(O, proto);
+    else O.__proto__ = proto;
+    return O;
+  };
+}() : undefined);
 
 
 /***/ }),
@@ -9799,6 +10968,70 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ "./node_modules/core-js/internals/schedulers-fix.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/core-js/internals/schedulers-fix.js ***!
+  \**********************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+var global = __webpack_require__(/*! ../internals/global */ "./node_modules/core-js/internals/global.js");
+var apply = __webpack_require__(/*! ../internals/function-apply */ "./node_modules/core-js/internals/function-apply.js");
+var isCallable = __webpack_require__(/*! ../internals/is-callable */ "./node_modules/core-js/internals/is-callable.js");
+var ENGINE_IS_BUN = __webpack_require__(/*! ../internals/engine-is-bun */ "./node_modules/core-js/internals/engine-is-bun.js");
+var USER_AGENT = __webpack_require__(/*! ../internals/engine-user-agent */ "./node_modules/core-js/internals/engine-user-agent.js");
+var arraySlice = __webpack_require__(/*! ../internals/array-slice */ "./node_modules/core-js/internals/array-slice.js");
+var validateArgumentsLength = __webpack_require__(/*! ../internals/validate-arguments-length */ "./node_modules/core-js/internals/validate-arguments-length.js");
+
+var Function = global.Function;
+// dirty IE9- and Bun 0.3.0- checks
+var WRAP = /MSIE .\./.test(USER_AGENT) || ENGINE_IS_BUN && (function () {
+  var version = global.Bun.version.split('.');
+  return version.length < 3 || version[0] == 0 && (version[1] < 3 || version[1] == 3 && version[2] == 0);
+})();
+
+// IE9- / Bun 0.3.0- setTimeout / setInterval / setImmediate additional parameters fix
+// https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers
+// https://github.com/oven-sh/bun/issues/1633
+module.exports = function (scheduler, hasTimeArg) {
+  var firstParamIndex = hasTimeArg ? 2 : 1;
+  return WRAP ? function (handler, timeout /* , ...arguments */) {
+    var boundArgs = validateArgumentsLength(arguments.length, 1) > firstParamIndex;
+    var fn = isCallable(handler) ? handler : Function(handler);
+    var params = boundArgs ? arraySlice(arguments, firstParamIndex) : [];
+    var callback = boundArgs ? function () {
+      apply(fn, this, params);
+    } : fn;
+    return hasTimeArg ? scheduler(callback, timeout) : scheduler(callback);
+  } : scheduler;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/set-to-string-tag.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/core-js/internals/set-to-string-tag.js ***!
+  \*************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var defineProperty = (__webpack_require__(/*! ../internals/object-define-property */ "./node_modules/core-js/internals/object-define-property.js").f);
+var hasOwn = __webpack_require__(/*! ../internals/has-own-property */ "./node_modules/core-js/internals/has-own-property.js");
+var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
+
+var TO_STRING_TAG = wellKnownSymbol('toStringTag');
+
+module.exports = function (target, TAG, STATIC) {
+  if (target && !STATIC) target = target.prototype;
+  if (target && !hasOwn(target, TO_STRING_TAG)) {
+    defineProperty(target, TO_STRING_TAG, { configurable: true, value: TAG });
+  }
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/internals/shared-key.js":
 /*!******************************************************!*\
   !*** ./node_modules/core-js/internals/shared-key.js ***!
@@ -9852,6 +11085,52 @@ var store = __webpack_require__(/*! ../internals/shared-store */ "./node_modules
   license: 'https://github.com/zloirock/core-js/blob/v3.27.2/LICENSE',
   source: 'https://github.com/zloirock/core-js'
 });
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/string-multibyte.js":
+/*!************************************************************!*\
+  !*** ./node_modules/core-js/internals/string-multibyte.js ***!
+  \************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "./node_modules/core-js/internals/function-uncurry-this.js");
+var toIntegerOrInfinity = __webpack_require__(/*! ../internals/to-integer-or-infinity */ "./node_modules/core-js/internals/to-integer-or-infinity.js");
+var toString = __webpack_require__(/*! ../internals/to-string */ "./node_modules/core-js/internals/to-string.js");
+var requireObjectCoercible = __webpack_require__(/*! ../internals/require-object-coercible */ "./node_modules/core-js/internals/require-object-coercible.js");
+
+var charAt = uncurryThis(''.charAt);
+var charCodeAt = uncurryThis(''.charCodeAt);
+var stringSlice = uncurryThis(''.slice);
+
+var createMethod = function (CONVERT_TO_STRING) {
+  return function ($this, pos) {
+    var S = toString(requireObjectCoercible($this));
+    var position = toIntegerOrInfinity(pos);
+    var size = S.length;
+    var first, second;
+    if (position < 0 || position >= size) return CONVERT_TO_STRING ? '' : undefined;
+    first = charCodeAt(S, position);
+    return first < 0xD800 || first > 0xDBFF || position + 1 === size
+      || (second = charCodeAt(S, position + 1)) < 0xDC00 || second > 0xDFFF
+        ? CONVERT_TO_STRING
+          ? charAt(S, position)
+          : first
+        : CONVERT_TO_STRING
+          ? stringSlice(S, position, position + 2)
+          : (first - 0xD800 << 10) + (second - 0xDC00) + 0x10000;
+  };
+};
+
+module.exports = {
+  // `String.prototype.codePointAt` method
+  // https://tc39.es/ecma262/#sec-string.prototype.codepointat
+  codeAt: createMethod(false),
+  // `String.prototype.at` method
+  // https://github.com/mathiasbynens/String.prototype.at
+  charAt: createMethod(true)
+};
 
 
 /***/ }),
@@ -10047,6 +11326,24 @@ module.exports = String(test) === '[object z]';
 
 /***/ }),
 
+/***/ "./node_modules/core-js/internals/to-string.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/core-js/internals/to-string.js ***!
+  \*****************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var classof = __webpack_require__(/*! ../internals/classof */ "./node_modules/core-js/internals/classof.js");
+
+var $String = String;
+
+module.exports = function (argument) {
+  if (classof(argument) === 'Symbol') throw TypeError('Cannot convert a Symbol value to a string');
+  return $String(argument);
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/internals/try-to-string.js":
 /*!*********************************************************!*\
   !*** ./node_modules/core-js/internals/try-to-string.js ***!
@@ -10123,6 +11420,22 @@ module.exports = DESCRIPTORS && fails(function () {
 
 /***/ }),
 
+/***/ "./node_modules/core-js/internals/validate-arguments-length.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/core-js/internals/validate-arguments-length.js ***!
+  \*********************************************************************/
+/***/ ((module) => {
+
+var $TypeError = TypeError;
+
+module.exports = function (passed, required) {
+  if (passed < required) throw $TypeError('Not enough arguments');
+  return passed;
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/internals/weak-map-basic-detection.js":
 /*!********************************************************************!*\
   !*** ./node_modules/core-js/internals/weak-map-basic-detection.js ***!
@@ -10167,75 +11480,6 @@ module.exports = function (name) {
 
 /***/ }),
 
-/***/ "./node_modules/core-js/modules/es.array.concat.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/core-js/modules/es.array.concat.js ***!
-  \*********************************************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
-var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js/internals/fails.js");
-var isArray = __webpack_require__(/*! ../internals/is-array */ "./node_modules/core-js/internals/is-array.js");
-var isObject = __webpack_require__(/*! ../internals/is-object */ "./node_modules/core-js/internals/is-object.js");
-var toObject = __webpack_require__(/*! ../internals/to-object */ "./node_modules/core-js/internals/to-object.js");
-var lengthOfArrayLike = __webpack_require__(/*! ../internals/length-of-array-like */ "./node_modules/core-js/internals/length-of-array-like.js");
-var doesNotExceedSafeInteger = __webpack_require__(/*! ../internals/does-not-exceed-safe-integer */ "./node_modules/core-js/internals/does-not-exceed-safe-integer.js");
-var createProperty = __webpack_require__(/*! ../internals/create-property */ "./node_modules/core-js/internals/create-property.js");
-var arraySpeciesCreate = __webpack_require__(/*! ../internals/array-species-create */ "./node_modules/core-js/internals/array-species-create.js");
-var arrayMethodHasSpeciesSupport = __webpack_require__(/*! ../internals/array-method-has-species-support */ "./node_modules/core-js/internals/array-method-has-species-support.js");
-var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
-var V8_VERSION = __webpack_require__(/*! ../internals/engine-v8-version */ "./node_modules/core-js/internals/engine-v8-version.js");
-
-var IS_CONCAT_SPREADABLE = wellKnownSymbol('isConcatSpreadable');
-
-// We can't use this feature detection in V8 since it causes
-// deoptimization and serious performance degradation
-// https://github.com/zloirock/core-js/issues/679
-var IS_CONCAT_SPREADABLE_SUPPORT = V8_VERSION >= 51 || !fails(function () {
-  var array = [];
-  array[IS_CONCAT_SPREADABLE] = false;
-  return array.concat()[0] !== array;
-});
-
-var isConcatSpreadable = function (O) {
-  if (!isObject(O)) return false;
-  var spreadable = O[IS_CONCAT_SPREADABLE];
-  return spreadable !== undefined ? !!spreadable : isArray(O);
-};
-
-var FORCED = !IS_CONCAT_SPREADABLE_SUPPORT || !arrayMethodHasSpeciesSupport('concat');
-
-// `Array.prototype.concat` method
-// https://tc39.es/ecma262/#sec-array.prototype.concat
-// with adding support of @@isConcatSpreadable and @@species
-$({ target: 'Array', proto: true, arity: 1, forced: FORCED }, {
-  // eslint-disable-next-line no-unused-vars -- required for `.length`
-  concat: function concat(arg) {
-    var O = toObject(this);
-    var A = arraySpeciesCreate(O, 0);
-    var n = 0;
-    var i, k, length, len, E;
-    for (i = -1, length = arguments.length; i < length; i++) {
-      E = i === -1 ? O : arguments[i];
-      if (isConcatSpreadable(E)) {
-        len = lengthOfArrayLike(E);
-        doesNotExceedSafeInteger(n + len);
-        for (k = 0; k < len; k++, n++) if (k in E) createProperty(A, n, E[k]);
-      } else {
-        doesNotExceedSafeInteger(n + 1);
-        createProperty(A, n++, E);
-      }
-    }
-    A.length = n;
-    return A;
-  }
-});
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js/modules/es.array.for-each.js":
 /*!***********************************************************!*\
   !*** ./node_modules/core-js/modules/es.array.for-each.js ***!
@@ -10252,6 +11496,30 @@ var forEach = __webpack_require__(/*! ../internals/array-for-each */ "./node_mod
 // eslint-disable-next-line es/no-array-prototype-foreach -- safe
 $({ target: 'Array', proto: true, forced: [].forEach != forEach }, {
   forEach: forEach
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/modules/es.array.from.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/core-js/modules/es.array.from.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
+var from = __webpack_require__(/*! ../internals/array-from */ "./node_modules/core-js/internals/array-from.js");
+var checkCorrectnessOfIteration = __webpack_require__(/*! ../internals/check-correctness-of-iteration */ "./node_modules/core-js/internals/check-correctness-of-iteration.js");
+
+var INCORRECT_ITERATION = !checkCorrectnessOfIteration(function (iterable) {
+  // eslint-disable-next-line es/no-array-from -- required for testing
+  Array.from(iterable);
+});
+
+// `Array.from` method
+// https://tc39.es/ecma262/#sec-array.from
+$({ target: 'Array', stat: true, forced: INCORRECT_ITERATION }, {
+  from: from
 });
 
 
@@ -10336,6 +11604,48 @@ if (!TO_STRING_TAG_SUPPORT) {
 
 /***/ }),
 
+/***/ "./node_modules/core-js/modules/es.string.iterator.js":
+/*!************************************************************!*\
+  !*** ./node_modules/core-js/modules/es.string.iterator.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+var charAt = (__webpack_require__(/*! ../internals/string-multibyte */ "./node_modules/core-js/internals/string-multibyte.js").charAt);
+var toString = __webpack_require__(/*! ../internals/to-string */ "./node_modules/core-js/internals/to-string.js");
+var InternalStateModule = __webpack_require__(/*! ../internals/internal-state */ "./node_modules/core-js/internals/internal-state.js");
+var defineIterator = __webpack_require__(/*! ../internals/iterator-define */ "./node_modules/core-js/internals/iterator-define.js");
+var createIterResultObject = __webpack_require__(/*! ../internals/create-iter-result-object */ "./node_modules/core-js/internals/create-iter-result-object.js");
+
+var STRING_ITERATOR = 'String Iterator';
+var setInternalState = InternalStateModule.set;
+var getInternalState = InternalStateModule.getterFor(STRING_ITERATOR);
+
+// `String.prototype[@@iterator]` method
+// https://tc39.es/ecma262/#sec-string.prototype-@@iterator
+defineIterator(String, 'String', function (iterated) {
+  setInternalState(this, {
+    type: STRING_ITERATOR,
+    string: toString(iterated),
+    index: 0
+  });
+// `%StringIteratorPrototype%.next` method
+// https://tc39.es/ecma262/#sec-%stringiteratorprototype%.next
+}, function next() {
+  var state = getInternalState(this);
+  var string = state.string;
+  var index = state.index;
+  var point;
+  if (index >= string.length) return createIterResultObject(undefined, true);
+  point = charAt(string, index);
+  state.index += point.length;
+  return createIterResultObject(point, false);
+});
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/modules/web.dom-collections.for-each.js":
 /*!**********************************************************************!*\
   !*** ./node_modules/core-js/modules/web.dom-collections.for-each.js ***!
@@ -10364,6 +11674,61 @@ for (var COLLECTION_NAME in DOMIterables) {
 }
 
 handlePrototype(DOMTokenListPrototype);
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/modules/web.set-interval.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/core-js/modules/web.set-interval.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
+var global = __webpack_require__(/*! ../internals/global */ "./node_modules/core-js/internals/global.js");
+var schedulersFix = __webpack_require__(/*! ../internals/schedulers-fix */ "./node_modules/core-js/internals/schedulers-fix.js");
+
+var setInterval = schedulersFix(global.setInterval, true);
+
+// Bun / IE9- setInterval additional parameters fix
+// https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-setinterval
+$({ global: true, bind: true, forced: global.setInterval !== setInterval }, {
+  setInterval: setInterval
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/modules/web.set-timeout.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js/modules/web.set-timeout.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
+var global = __webpack_require__(/*! ../internals/global */ "./node_modules/core-js/internals/global.js");
+var schedulersFix = __webpack_require__(/*! ../internals/schedulers-fix */ "./node_modules/core-js/internals/schedulers-fix.js");
+
+var setTimeout = schedulersFix(global.setTimeout, true);
+
+// Bun / IE9- setTimeout additional parameters fix
+// https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-settimeout
+$({ global: true, bind: true, forced: global.setTimeout !== setTimeout }, {
+  setTimeout: setTimeout
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/modules/web.timers.js":
+/*!****************************************************!*\
+  !*** ./node_modules/core-js/modules/web.timers.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+// TODO: Remove this module from `core-js@4` since it's split to modules listed below
+__webpack_require__(/*! ../modules/web.set-interval */ "./node_modules/core-js/modules/web.set-interval.js");
+__webpack_require__(/*! ../modules/web.set-timeout */ "./node_modules/core-js/modules/web.set-timeout.js");
 
 
 /***/ })
@@ -10459,14 +11824,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
 /* harmony import */ var _modules_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/modal */ "./src/js/modules/modal.js");
 /* harmony import */ var _modules_sliders__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/sliders */ "./src/js/modules/sliders.js");
+/* harmony import */ var _modules_advantagesSlide__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/advantagesSlide */ "./src/js/modules/advantagesSlide.js");
+/* harmony import */ var _modules_sliderTemplate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/sliderTemplate */ "./src/js/modules/sliderTemplate.js");
+
+
 
 
 
 
 
 document.addEventListener('DOMContentLoaded', function () {
-  (0,_modules_sliders__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  (0,_modules_sliders__WEBPACK_IMPORTED_MODULE_2__.firstScreenSlider)();
+  (0,_modules_advantagesSlide__WEBPACK_IMPORTED_MODULE_3__.advantagesSlider)();
   (0,_modules_modal__WEBPACK_IMPORTED_MODULE_1__["default"])();
+  (0,_modules_sliderTemplate__WEBPACK_IMPORTED_MODULE_4__.sliderTemplate)('.dilivery .offer__slider-inner', '.dilivery .slider-template__item', '.dilivery .offer__slider-prev', '.dilivery .offer__slider-next', '.carousel-indicators-dilivery');
+  (0,_modules_sliderTemplate__WEBPACK_IMPORTED_MODULE_4__.sliderTemplate)('.services .offer__slider-inner', '.services .slider-template__item', '.services .offer__slider-prev', '.offer__slider-next-services', '.carousel-indicators-services');
 });
 })();
 

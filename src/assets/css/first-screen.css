@@ -1,5 +1,6 @@
 
  .first-screen .slick-slide{
+    display: none;
     position: relative;
     padding: 163px 100px 163px 100px;
     background-position: center;
@@ -11,6 +12,7 @@
     position: relative;
 
 }
+
 .container-fluid{
     max-width: 1820px;
     width: 100%;

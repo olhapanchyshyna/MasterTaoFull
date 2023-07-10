@@ -10,6 +10,7 @@
     margin-bottom: 97px;
 
 }
+
 .advantages-item{
     margin: 0 15px 0px;
     width: 263px;
@@ -85,7 +86,21 @@
     .offer__slider_counter-advantages{
         display: flex;
     }
-    .advantages .dot{
+  
+    .carousel-indicators-advantages{
+        display: flex;
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+        left: 0;
+        z-index: 15;
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+        transition: all;
+    }
+    .carousel-indicators-advantages li{
         display: flex;
         box-sizing: content-box;
         flex: 0 1 auto;
@@ -99,20 +114,7 @@
         background-clip: padding-box;
         border-top: 10px solid transparent;
         border-bottom: 10px solid transparent;
-        transition: opacity .7s ease;
-    }
-
-    .carousel-indicators-advantages{
-        display: flex;
-        position: absolute;
-        right: 0;
-        bottom: 10px;
-        left: 0;
-        z-index: 15;
-        display: flex;
-        justify-content: center;
-        list-style: none;
-        padding: 0;
+        opacity: 0.5;
     }
    
     .active-current-advantages{
@@ -125,8 +127,14 @@
     }
     .offer__slider-inner-advantages{
         display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
+        /* flex-direction: row; */
+        /* flex-wrap: nowrap; */
         justify-content: center;
+    }
+}
+
+@media screen and (max-width: 585px){
+    .advantages-item{
+        display: none;
     }
 }

@@ -12,6 +12,7 @@
 @import url("cooperation.css");
 @import url("footer.css");
 @import url("form.css");
+@import url("animate.css");
 
 :root{
     --primary-color:#E58D35;
@@ -132,7 +133,14 @@ body{
     text-decoration: none;
 }
 
-.active-current{
-    opacity: 1;
+.slick-active{
+    opacity: 1 !important;
 }
 
+.hidden{
+    display: none !important;
+}
+
+.active{
+    display: block !important;
+}
